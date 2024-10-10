@@ -1,0 +1,32 @@
+<odoo>
+    <data noupdate="0">
+        <record id="module_category_plan_sales_order" model="ir.module.category">
+            <field name="name">Kế Hoạch KD</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="group_plan_sale_list" model="res.groups">
+            <field name="name">Danh sách Kế Hoạch KD</field>
+            <field name="category_id" ref="module_category_plan_sales_order"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_plan_sale_staffs" model="res.groups">
+            <field name="name">Nhân viên sale</field>
+            <field name="category_id" ref="module_category_plan_sales_order"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_plan_sale_team_leader" model="res.groups">
+            <field name="name">Trưởng Nhóm Bán Hàng</field>
+            <field name="category_id" ref="module_category_plan_sales_order"/>
+            <field name="implied_ids" eval="[(4, ref('group_plan_sale_staffs'))]"/>
+        </record>
+
+        <record id="group_plan_sale_manager" model="res.groups">
+            <field name="name">Quản lý Bán Hàng</field>
+            <field name="category_id" ref="module_category_plan_sales_order"/>
+           
+        </record>
+    </data>
+
+</odoo>
