@@ -15,10 +15,24 @@
                         <group>
                             <field name="name"/>
                             <field name="author_ids" widget="many2many_tags"/>
+                             <field name="state"/>
+                            <field name="pages"/>
+                            <fields name="notes"/>
                         </group>
                         <group>
                             <field name="short_name"/>
                             <field name="date_release"/>
+                            <field name="date_updated"/>
+                            <field name="cover" widget="image" class="oe_avatar"/>
+                            <field name="reader_rating"/>
+                            <field name="retail_price"/>
+                            <field name="currency_id"/>
+                            <field name="publisher_id"/>
+                            <field name="category_id"/>
+                            <field name="age_days"/>
+                        </group>
+                         <group>
+                            <field name="description"/>
                         </group>
                     </group>
                 </form>
