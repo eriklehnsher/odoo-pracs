@@ -8,11 +8,16 @@
     """,
     'author':'Erik.',
     'version':'1.0.0',
-    'depend':['base'],
+    'depend':['base','mail'],
     'data':[
         "security/groups.xml",
         "security/ir.model.access.csv",
         "views/my_library_views.xml",
+        "views/res_partner_inherit_view.xml",
+        "views/library_members_views.xml",
+        "views/library_book_catg_views.xml",
         ],
+    'demo': [
 
+    ],
 }

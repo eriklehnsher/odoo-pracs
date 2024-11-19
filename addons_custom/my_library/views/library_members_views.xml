@@ -1,0 +1,44 @@
+<odoo>
+
+    <record id="view_library_member_form" model="ir.ui.view">
+        <field name="name">library.member.form</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <form string="Library Member">
+
+                <sheet>
+                    <group>
+                        <field name="partner_id"/>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="member_number"/>
+                        <field name="date_of_birth"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_library_member_tree" model="ir.ui.view">
+        <field name="name">library.member.tree</field>
+        <field name="model">library.member</field>
+        <field name="arch" type="xml">
+            <tree string="Library Members">
+                <field name="partner_id"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="member_number"/>
+                <field name="date_of_birth"/>
+            </tree>
+        </field>
+    </record>
+    <record id="action_library_member" model="ir.actions.act_window">
+        <field name="name">Library Members</field>
+        <field name="res_model">library.member</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_library_member_tree"/>
+    </record>
+    <menuitem id="menu_library_member" name="Library Members" parent="my_library.library_base_menu"
+              action="action_library_member"/>
+</odoo>

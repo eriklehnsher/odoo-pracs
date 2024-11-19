@@ -5,36 +5,52 @@
             <field name='res_model'>library.book</field>
             <field name='view_mode'>tree,form</field>
         </record>
-
         <record id='library_book_view_form' model='ir.ui.view'>
             <field name='name'>Library Book Form</field>
             <field name='model'>library.book</field>
             <field name='arch' type='xml'>
                 <form string='Library Book'>
-                    <group>
+                    <sheet>
+                        <header>
+                            <button name="make_available" class="btn-primary" string="Make Available" type="object"/>
+                            <button name="make_borrowed" class="btn-primary" string="Make Borrowed" type="object"/>
+                            <button name="make_lost" class="btn-primary" string="Make Lost" type="object"/>
+                            <field name="state" widget="statusbar"/>
+                        </header>
                         <group>
-                            <field name="name"/>
-                            <field name="author_ids" widget="many2many_tags"/>
-                             <field name="state"/>
-                            <field name="pages"/>
-                            <fields name="notes"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="author_ids" widget="many2many_tags"/>
+                                <field name="state"/>
+                                <field name="pages"/>
+                                <field name="notes"/>
+                                <field name="manager_remarks"/>
+                            </group>
+
+                            <group>
+                                <field name="short_name"/>
+                                <field name="date_release"/>
+                                <field name="date_updated"/>
+                                <field name="cover" widget="image" class="oe_avatar"/>
+                                <field name="reader_rating"/>
+                                <field name="retail_price"/>
+                                <field name="currency_id"/>
+                                <field name="publisher_id"/>
+                                <field name="publisher_city"/>
+                                <field name="category_id"/>
+                                <field name="age_days"/>
+                                <field name="ref_doc_id"/>
+                            </group>
+
+                            <group>
+                                <field name="description"/>
+                            </group>
+
                         </group>
-                        <group>
-                            <field name="short_name"/>
-                            <field name="date_release"/>
-                            <field name="date_updated"/>
-                            <field name="cover" widget="image" class="oe_avatar"/>
-                            <field name="reader_rating"/>
-                            <field name="retail_price"/>
-                            <field name="currency_id"/>
-                            <field name="publisher_id"/>
-                            <field name="category_id"/>
-                            <field name="age_days"/>
-                        </group>
-                         <group>
-                            <field name="description"/>
-                        </group>
-                    </group>
+                        <button name="change_date_release" class="btn-secondary" string="Change Release Date" type="object"/>
+                        <button name="log_all_library_members" class="btn-primary" string="Log Members" type="object"/>
+                        <button name="get_combined_books" class="btn-primary" string="Combined Books" type="object"/>
+                    </sheet>
                 </form>
             </field>
         </record>
@@ -42,30 +58,25 @@
             <field name='name'>Library Book Tree</field>
             <field name='model'>library.book</field>
             <field name='arch' type='xml'>
-                <tree string='Library Book'>
+                <tree string='Books (Sorted by Date)'>
                     <field name="name"/>
                     <field name="date_release"/>
                 </tree>
+
             </field>
         </record>
-
-        <!-- view search -->
         <record id='library_book_view_search' model='ir.ui.view'>
             <field name='name'>Library Book Search</field>
             <field name='model'>library.book</field>
             <field name='arch' type='xml'>
                 <search string='Library Book'>
                     <field name="name"/>
-                    <field name="author_ids" />
-                    <filter string="No Authors"
-                                name="without_authors"
-                                domain="[('author_ids','=', False)]" />
+                    <field name="author_ids"/>
+                    <filter string="No Authors" name="without_authors" domain="[('author_ids','=', False)]"/>
                 </search>
             </field>
         </record>
-
-        <menuitem name='Library' id='library_base_menu' />
-        <menuitem name='book'  id='library_book_menu' parent='library_base_menu' action='library_book_action'/>
-
+        <menuitem name='Library' id='library_base_menu'/>
+        <menuitem name='book' id='library_book_menu' parent='library_base_menu' action='library_book_action'/>
     </data>
 </odoo>

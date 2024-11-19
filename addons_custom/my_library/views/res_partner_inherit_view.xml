@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id='library_book_partner_action' model='ir.actions.act_window'>
+            <field name='name'>Books</field>
+            <field name='res_model'>library.member</field>
+            <field name='view_mode'>tree,form</field>
+        </record>
+        <record id="view_res_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='email']" position="after">
+                    <field name="count_books"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
