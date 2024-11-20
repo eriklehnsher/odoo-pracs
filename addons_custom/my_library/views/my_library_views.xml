@@ -32,6 +32,7 @@
                                 <field name="date_release"/>
                                 <field name="date_updated"/>
                                 <field name="cover" widget="image" class="oe_avatar"/>
+                                <field name="cost_price"/>
                                 <field name="reader_rating"/>
                                 <field name="retail_price"/>
                                 <field name="currency_id"/>
@@ -50,6 +51,7 @@
                         <button name="change_date_release" class="btn-secondary" string="Change Release Date" type="object"/>
                         <button name="log_all_library_members" class="btn-primary" string="Log Members" type="object"/>
                         <button name="get_combined_books" class="btn-primary" string="Combined Books" type="object"/>
+                        <button name="action_get_average_cost" class="btn-primary" string="get average cost" type="object"/>
                     </sheet>
                 </form>
             </field>

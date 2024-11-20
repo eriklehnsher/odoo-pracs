@@ -36,6 +36,7 @@ class LibraryBook(models.Model):
     out_of_print = fields.Boolean('Out of Print?')
     date_release = fields.Date('Release Date')
     pages = fields.Integer('Number of Pages')
+    cost_price = fields.Float('Book Cost')
     date_updated = fields.Datetime('Last Updated')
     reader_rating = fields.Float('Reader Average Rating', (14,
                                                            4))  # trung bình đánh giá của người đọc( 14 digits in total, 4 after the decimal point - số lượng chữ số sau dấu phẩy là 4 chữ số sau dấu phẩy)
@@ -50,14 +51,16 @@ class LibraryBook(models.Model):
     ref_doc_id = fields.Reference(selection='_referencable_models', string='Reference Document')
     manager_remarks = fields.Text('Manager Remarks')
 
-
     def books_with_multiple_authors(self, all_books):
         all_books = self.env['library.book'].search([])
+
         def predicate(book):
             if len(book.author_ids) > 1:
                 return True
             return False
+
         return all_books.filtered(predicate)
+
     print('books_with_multiple_authors', books_with_multiple_authors)
 
     def change_date_release(self):
@@ -163,6 +166,20 @@ class LibraryBook(models.Model):
         if not self.user_has_groups('my_library.access_library_book') and 'manager_remarks' in vals:
             raise models.ValidationError('You are not allowed to modify manager_remarks')
         return super(LibraryBook, self).write(vals)
+
+    def _get_average_cost(self):  # Tính giá trung bình theo từng category
+        grouped_result = self.read_group(
+            [('cost_price', '!=', False)],  # domain
+            [('category_id', 'cost_price:avg')],  # fields to group by
+            ['category_id'],  # group by
+
+        )
+        return grouped_result
+
+    def action_get_average_cost(self):
+        result = self._get_average_cost()
+        print(result, 'result of get_average_cost')
+        return True
 
 
 class ResPartner(models.Model):
