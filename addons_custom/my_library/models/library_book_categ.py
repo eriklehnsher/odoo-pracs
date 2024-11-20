@@ -7,9 +7,15 @@ class BookCategory(models.Model):
     description = fields.Text('Description')
     parent_id = fields.Many2one('library.book.category', string='Parent Category', ondelete='restrict')
     child_ids = fields.One2many('library.book.category', 'parent_id', string='Child Categories')
+    max_borrow_days = fields.Integer('Maximum Borrow Days',help='For how many days can you borrow a book of this category', default=10)
     _parent_store = True
     _parent_id = 'parent_id'
     parent_path = fields.Char(index=True)
+
+
+
+
+
 
     @api.constrains
     def _check_hierarchy(self):
