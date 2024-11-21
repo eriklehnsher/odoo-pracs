@@ -63,7 +63,7 @@
             <field name='arch' type='xml'>
                 <tree string='Books (Sorted by Date)'>
                     <field name="name"/>
-                    <field name="author_ids"/>
+                    <field name="author_ids" widget="many2many_tags"/>
                     <field name="publisher_id" />
                     <field name="quantity"/>
                     <field name="date_release"/>

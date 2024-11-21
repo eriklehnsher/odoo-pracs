@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+        <record id="library_return_wizard" model="ir.ui.view">
+            <field name="name">library.return.wizard</field>
+            <field name="model">library.return.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Return a Book">
+                    <group>
+                        <field name="borrower_id"/>
+                    </group>
+                    <group>
+                        <field name="book_ids"/>
+                    </group>
+                    <footer>
+                        <button name="books_returns" string="Return" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="action_library_return_wizard" model="ir.actions.act_window">
+            <field name="name">Return a Book</field>
+            <field name="res_model">library.return.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="library_return_wizard"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem id = "menu_library_return_wizard" name = "Return a Book" parent = "my_library.menu_library_book_rents" action = "action_library_return_wizard"/>
+    </data>
+</odoo>

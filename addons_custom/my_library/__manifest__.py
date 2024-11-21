@@ -17,6 +17,8 @@
         "views/library_members_views.xml",
         "views/library_book_catg_views.xml",
         "views/library_book_rent_view.xml",
+        "wizard/library_rent_wizard_view.xml",
+        "wizard/library_return_wizard_view.xml",
         ],
     'demo': [
 

@@ -3,6 +3,8 @@ from email.policy import default
 from odoo import models, fields, api
 from datetime import timedelta
 from odoo.exceptions import UserError
+from odoo.tests.common import Form
+
 
 
 class LibraryBook(models.Model):
@@ -67,6 +69,21 @@ class LibraryBook(models.Model):
         selection="_referencable_models", string="Reference Document"
     )
     manager_remarks = fields.Text("Manager Remarks")
+
+
+
+
+
+#defs for the library.book model
+
+    def return_all_books(self):
+        self.ensure_one()
+        wizard = self.env["library.return.wizard"]
+        with Form(wizard) as return_form:
+            return_form.borrower_id = self.env.user.partner_id # gán giá trị cho borrower_id
+            record = return_form.save()
+            record.books_returns()
+            print("Return all books", record)
 
     def books_with_multiple_authors(self, all_books):
         all_books = self.env["library.book"].search([])

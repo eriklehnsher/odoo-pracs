@@ -11,6 +11,7 @@
                         </header>
                         <group>
                             <field name="book_id"/>
+                            <field name="author_ids" widget="many2many_tags"/>
                             <field name="state"/>
                         </group>
                         <group>
@@ -29,6 +30,8 @@
                 <tree string='Library Book Rent'>
                     <field name="book_id"/>
                     <field name="state"/>
+                    <field name="author_ids" widget="many2many_tags"/>
+                    <field name="borrower_id"/>
                     <field name="rent_date"/>
                     <field name="return_date"/>
                 </tree>
@@ -41,7 +44,7 @@
             <field name="view_mode">tree,form</field>
         </record>
 
-        <menuitem id="menu_library_book_rent" name="Library Book Rent" parent="my_library.library_base_menu"
-                  action="library_book_rent_action"/>
+        <menuitem id="menu_library_book_rents" name="Library Book Rent" parent="my_library.library_base_menu"/>
+        <menuitem id="menu_library_book_rent" name="Library Book Rent" parent="my_library.menu_library_book_rents" action="library_book_rent_action"/>
     </data>
 </odoo>
