@@ -35,6 +35,7 @@
                                 <field name="cost_price"/>
                                 <field name="reader_rating"/>
                                 <field name="retail_price"/>
+                                <field name="quantity"/>
                                 <field name="currency_id"/>
                                 <field name="publisher_id"/>
                                 <field name="publisher_city"/>
@@ -42,11 +43,9 @@
                                 <field name="age_days"/>
                                 <field name="ref_doc_id"/>
                             </group>
-
                             <group>
                                 <field name="description"/>
                             </group>
-
                         </group>
                         <button name="change_date_release" class="btn-secondary" string="Change Release Date" type="object"/>
                         <button name="log_all_library_members" class="btn-primary" string="Log Members" type="object"/>
@@ -62,9 +61,11 @@
             <field name='arch' type='xml'>
                 <tree string='Books (Sorted by Date)'>
                     <field name="name"/>
+                    <field name="author_ids"/>
+                    <field name="publisher_id" />
+                    <field name="quantity"/>
                     <field name="date_release"/>
                 </tree>
-
             </field>
         </record>
         <record id='library_book_view_search' model='ir.ui.view'>
@@ -74,6 +75,7 @@
                 <search string='Library Book'>
                     <field name="name"/>
                     <field name="author_ids"/>
+                    
                     <filter string="No Authors" name="without_authors" domain="[('author_ids','=', False)]"/>
                 </search>
             </field>
