@@ -24,7 +24,6 @@ class LibraryBook(models.Model):
         ("name_uniq", "UNIQUE (name)", "Book title must be unique."),
         ("positive_page", "CHECK(pages > 0)", "No of pages must be positive"),
     ]
-
     notes = fields.Text("Internal Notes")
     state = fields.Selection(
         [
@@ -36,6 +35,7 @@ class LibraryBook(models.Model):
         "State",
         default="draft",
     )
+    active = fields.Boolean("Active?", default=True)
     description = fields.Html("Description")
     cover = fields.Binary("Book Cover")
     out_of_print = fields.Boolean("Out of Print?")
@@ -51,7 +51,7 @@ class LibraryBook(models.Model):
     retail_price = fields.Monetary("Retail Price", currency_field="currency_id")
     publisher_id = fields.Many2one("res.partner", string="Publisher")
     category_id = fields.Many2one("library.book.category", string="Category")
-    quantity = fields.Integer( "Quantity", default=1, required=True)
+    quantity = fields.Integer("Quantity", default=1, required=True)
     age_days = fields.Float(
         string="Days Since Release",
         compute="_compute_age",
@@ -80,16 +80,14 @@ class LibraryBook(models.Model):
 
     print("books_with_multiple_authors", books_with_multiple_authors)
 
-    
-        
     def book_rent(self):
         self.ensure_one()
         if self.state != "available":
             raise UserError(("Book is not available"))
-        
+
         if self.quantity <= 0:
             raise UserError(("Book is out of stock"))
-        
+
         rent_as_superuser = (
             self.env["library.book.rent"]
             .sudo()
@@ -140,8 +138,19 @@ class LibraryBook(models.Model):
     def make_borrowed(self):
         self.change_state("borrowed")
 
+
     def make_lost(self):
-        self.change_state("lost")
+        self.ensure_one()
+        self.state = "lost"
+        if not self.env.context.get('avoid_deactivate'):
+            self.active = False
+
+
+    def restore_all_books(self):
+        hidden_books = self.env['library.book'].search([('active', '=', False)])
+        hidden_books.write({'active': True})
+        return True
+
 
     def _inverse_age(self):
         today = fields.Date.today()
@@ -161,6 +170,7 @@ class LibraryBook(models.Model):
         }
         new_op = operator_map.get(operator, operator)
         return [("date_release", new_op, value_date_str)]
+
         # Tính linh hoạt của search:
         # Hàm search cho phép bạn định nghĩa cách tìm kiếm trong các trường tính toán,
         # điều này đặc biệt hữu ích nếu bạn muốn tìm kiếm sách theo số ngày đã phát hành.
@@ -199,17 +209,19 @@ class LibraryBook(models.Model):
         return books.sorted(key="date_release", reverse=True)
 
     def create(self, values):
-        if not self.user_has_groups("my_library.access_library_book"):
-            if "manager_remarks" in values:
-                raise models.ValidationError(
-                    "You are not allowed to modify manager_remarks"
-                )
-            return super(LibraryBook, self).create(values)
+        if (
+            not self.user_has_groups("my_library.group_librarian_manager")
+            and "manager_remarks" in values
+        ):
+            raise models.ValidationError(
+                "You are not allowed to modify manager_remarks"
+            )
+        return super(LibraryBook, self).create(values)
 
     def write(self, vals):
         if (
-            not self.user_has_groups("my_library.access_library_book")
-            and "manager_remarks" in vals
+                not self.user_has_groups("my_library.group_librarian_manager")
+                and "manager_remarks" in vals
         ):
             raise models.ValidationError(
                 "You are not allowed to modify manager_remarks"
@@ -230,6 +242,16 @@ class LibraryBook(models.Model):
         return True
 
 
+
+
+
+
+
+
+
+
+
+
 class ResPartner(models.Model):
     _inherit = "res.partner"
     published_book_ids = fields.One2many(
@@ -244,7 +266,6 @@ class ResPartner(models.Model):
     count_books = fields.Integer(
         "Number of Authored Books", compute="_compute_count_books"
     )
-
     @api.depends("authored_book_ids")
     def _compute_count_books(self):
         for author in self:

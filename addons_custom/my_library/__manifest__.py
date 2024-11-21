@@ -16,6 +16,7 @@
         "views/res_partner_inherit_view.xml",
         "views/library_members_views.xml",
         "views/library_book_catg_views.xml",
+        "views/library_book_rent_view.xml",
         ],
     'demo': [
 

@@ -15,6 +15,7 @@
                             <button name="make_available" class="btn-primary" string="Make Available" type="object"/>
                             <button name="make_borrowed" class="btn-primary" string="Make Borrowed" type="object"/>
                             <button name="make_lost" class="btn-primary" string="Make Lost" type="object"/>
+
                             <field name="state" widget="statusbar"/>
                         </header>
                         <group>
@@ -51,6 +52,7 @@
                         <button name="log_all_library_members" class="btn-primary" string="Log Members" type="object"/>
                         <button name="get_combined_books" class="btn-primary" string="Combined Books" type="object"/>
                         <button name="action_get_average_cost" class="btn-primary" string="get average cost" type="object"/>
+                        <button name="restore_all_books" class="btn-primary" string="Restore All Books" type="object"/>
                     </sheet>
                 </form>
             </field>
@@ -80,7 +82,15 @@
                 </search>
             </field>
         </record>
+
+<!--        <record id="action_get_hidden_books" model="ir.actions.server">-->
+<!--            <field name="name">Get Hidden Books</field>-->
+<!--            <field name="res_model">library.book</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="domain">[('active','=','False')]</field>-->
+<!--        </record>-->
         <menuitem name='Library' id='library_base_menu'/>
         <menuitem name='book' id='library_book_menu' parent='library_base_menu' action='library_book_action'/>
+<!--        <menuitem name='hidden books' id='library_book_hidden' parent='library_base_menu' action='action_get_hidden_books'/>-->
     </data>
 </odoo>
