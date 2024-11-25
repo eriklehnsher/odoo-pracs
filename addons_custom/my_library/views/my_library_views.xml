@@ -26,6 +26,7 @@
                                 <field name="pages"/>
                                 <field name="notes"/>
                                 <field name="manager_remarks"/>
+<!--                                <field name="domain=">[('genre', '=', 'scifi')]"</field>-->
                             </group>
 
                             <group>

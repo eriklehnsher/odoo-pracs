@@ -6,7 +6,6 @@ from odoo.exceptions import UserError
 from odoo.tests.common import Form
 
 
-
 class LibraryBook(models.Model):
     _name = "library.book"
     _description = "Library Book"
@@ -70,17 +69,28 @@ class LibraryBook(models.Model):
     )
     manager_remarks = fields.Text("Manager Remarks")
 
+    genre = fields.Selection(
+        [("scifi", "Science Fiction"),
+         ("fantasy", "Fantasy"),
+         ("drama", "Drama"),
+         ("mystery", "Mystery"),
+         ("nonfiction", "Non-Fiction"),
+         ("other", "Other"), ], "Genre", default="scifi")
 
 
 
 
-#defs for the library.book model
+    # defs for the library.book model
+
+    def get_fiction_books(self):
+        fiction_books = self.env["library.book"].search([("genre", "=", "scifi")])
+        return fiction_books
 
     def return_all_books(self):
         self.ensure_one()
         wizard = self.env["library.return.wizard"]
         with Form(wizard) as return_form:
-            return_form.borrower_id = self.env.user.partner_id # gán giá trị cho borrower_id
+            return_form.borrower_id = self.env.user.partner_id  # gán giá trị cho borrower_id
             record = return_form.save()
             record.books_returns()
             print("Return all books", record)
@@ -155,19 +165,16 @@ class LibraryBook(models.Model):
     def make_borrowed(self):
         self.change_state("borrowed")
 
-
     def make_lost(self):
         self.ensure_one()
         self.state = "lost"
         if not self.env.context.get('avoid_deactivate'):
             self.active = False
 
-
     def restore_all_books(self):
         hidden_books = self.env['library.book'].search([('active', '=', False)])
         hidden_books.write({'active': True})
         return True
-
 
     def _inverse_age(self):
         today = fields.Date.today()
@@ -227,8 +234,8 @@ class LibraryBook(models.Model):
 
     def create(self, values):
         if (
-            not self.user_has_groups("my_library.group_librarian_manager")
-            and "manager_remarks" in values
+                not self.user_has_groups("my_library.group_librarian_manager")
+                and "manager_remarks" in values
         ):
             raise models.ValidationError(
                 "You are not allowed to modify manager_remarks"
@@ -259,16 +266,6 @@ class LibraryBook(models.Model):
         return True
 
 
-
-
-
-
-
-
-
-
-
-
 class ResPartner(models.Model):
     _inherit = "res.partner"
     published_book_ids = fields.One2many(
@@ -283,6 +280,11 @@ class ResPartner(models.Model):
     count_books = fields.Integer(
         "Number of Authored Books", compute="_compute_count_books"
     )
+    customer_rank = fields.Integer("Customer Rank", default=0)
+
+    supplier_rank = fields.Integer("Supplier Rank", default=0)
+
+    #def for the res.partner model
     @api.depends("authored_book_ids")
     def _compute_count_books(self):
         for author in self:
