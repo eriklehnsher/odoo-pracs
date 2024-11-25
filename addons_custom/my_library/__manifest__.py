@@ -1,6 +1,7 @@
 {
     'name':'My Library',
     'summary':'Manage books easily',
+    'category': 'Library',
     'description': """
     Manage Library
     ==============
