@@ -1,0 +1,94 @@
+<odoo>
+	<data>
+		<!-- create_form -->
+		<record id="plan_sale_order_form" model="ir.ui.view">
+			<field name="name">plan.sale.order.form</field>
+			<field name="model">plan.sale.order</field>
+			<field name="arch" type="xml">
+				<form string="Plan Sale Order">
+					<header>
+<!--						<button-->
+<!--								string="Gửi duyệt"-->
+<!--								type="object"-->
+<!--								name="action_sent_for_approval"-->
+<!--								class="btn-primary"-->
+<!--							    invisible="state not in ['draft', 'rejected']"-->
+<!--							    groups="plan_sales.group_plan_sale_staffs"/>-->
+
+                        <button
+								string="Duyệt Kế Hoạch"
+								type="object"
+								name="action_approve_plan_sale_order"
+								class="btn-primary"
+
+                                />
+
+                        <button
+								string="Từ chối"
+								type="object"
+								name="action_reject_plan_sale_order"
+								class="btn-secondary"
+
+                              />
+
+						<field
+								name="state"
+								widget="statusbar"
+								statusbar_visible="draft, pending, approved, rejected" />
+					</header>
+					<sheet>
+						<group>
+
+							<field name="name" required="1" readonly="state in ['approved','pending'] "/>
+							<field name="sale_order_id" readonly="1" />
+							<field name="plan_sale_order_info" required="1" readonly="state in ['approved','pending']" />
+							<field name = "approver_ids" readonly="state in ['approved','pending']" />
+
+							<field name="creator_id" readonly="1" />
+						</group>
+					</sheet>
+					<div class="oe_chatter">
+						<field name="message_follower_ids" widget="mail_followers" groups="base.group_user" />
+						<field name="message_ids" widget="mail_thread" />
+					</div>
+
+				</form>
+			</field>
+		</record>
+
+
+
+		<!-- get_list -->
+		<record id="plan_sale_order_tree" model="ir.ui.view">
+			<field name="name">plan.sale.order.tree</field>
+			<field name="model">plan.sale.order</field>
+			<field name="arch" type="xml">
+				<tree string="Plan Sale Order">
+					<field name="name" />
+					<field name="sale_order_id" />
+					<field name= "approver_ids" />
+					<field name="created_at" />
+					<field name="updated_at" />
+
+					<field name= "state"
+					decoration-success="state == 'approved'"
+					decoration-danger="state == 'rejected'"
+					decoration-warning="state == 'pending'"
+					decoration-info="state == 'draft'"
+					widget="badge"/>
+					<field name="creator_id" readonly="1" />
+				</tree>
+			</field>
+		</record>
+		<record id="action_create_plan_sale_order" model="ir.actions.act_window">
+			<field name="name">Phương án KD</field>
+			<field name="res_model">plan.sale.order</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="plan_sale_order_tree" />
+		</record>
+
+
+		<menuitem id="menu_plan_sale_order" name="Plan Sale Order" action="action_create_plan_sale_order" parent="sale.sale_order_menu" sequence="10" />
+
+	</data>
+</odoo>

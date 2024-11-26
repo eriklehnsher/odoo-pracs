@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <record id="sale_order_inherit_view" model="ir.ui.view">
+            <field name="name">sale.order.inherit.view</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='authorized_transaction_ids']" position="after">
+                     <button name="action_create_plan_sale_order" type="object" data-hotkey="shift+g"
+                        string="Create Plan For This Quot" class="btn"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
