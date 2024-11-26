@@ -7,13 +7,13 @@
 			<field name="arch" type="xml">
 				<form string="Plan Sale Order">
 					<header>
-<!--						<button-->
-<!--								string="Gửi duyệt"-->
-<!--								type="object"-->
-<!--								name="action_sent_for_approval"-->
-<!--								class="btn-primary"-->
-<!--							    invisible="state not in ['draft', 'rejected']"-->
-<!--							    groups="plan_sales.group_plan_sale_staffs"/>-->
+						<button
+								string="Gửi duyệt"
+								type="object"
+								name="action_sent_for_approval"
+								class="btn-primary"
+							    invisible="state not in ['draft', 'rejected']"
+							    groups="plan_sales.group_plan_sale_staffs"/>
 
                         <button
 								string="Duyệt Kế Hoạch"
@@ -28,7 +28,6 @@
 								type="object"
 								name="action_reject_plan_sale_order"
 								class="btn-secondary"
-
                               />
 
 						<field
@@ -38,7 +37,6 @@
 					</header>
 					<sheet>
 						<group>
-
 							<field name="name" required="1" readonly="state in ['approved','pending'] "/>
 							<field name="sale_order_id" readonly="1" />
 							<field name="plan_sale_order_info" required="1" readonly="state in ['approved','pending']" />
