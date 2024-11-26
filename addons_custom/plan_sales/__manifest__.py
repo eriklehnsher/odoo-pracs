@@ -11,9 +11,10 @@
 
     ],
     "data": [
-        "views/plan_sale_order_views.xml",
-        "views/plan_sale_order_templates.xml",
-        # "security/ir.model.access.csv",
-        # "security/plan_sale_order_security.xml",
+        "views/plan_sale_order_view.xml",
+        "views/sale_order_inherit_view.xml",
+
+        "security/plan_sales_group.xml",
+        "security/ir.model.access.csv",
     ],
 }
