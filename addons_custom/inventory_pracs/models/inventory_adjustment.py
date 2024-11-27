@@ -4,31 +4,35 @@ from odoo import models, fields, api
 class InventoryAdjustment(models.Model):
     _name = 'inventory.adjustment'
     _description = 'Inventory Adjustment'
-    
-    
-    name = fields.Char(string='Tên', required=True)
-    inventory_adjustment_code = fields.Char(string='Mã Phiếu', required=True)
-    state_date = fields.Date(string='Ngày bắt đầu', required=True)
-    end_date = fields.Date(string='Ngày kết thúc', required=True)
-    warehouse_id = fields.Many2one('stock.warehouse', string='Kho', required=True)
-    stock_inventory_id = fields.Many2one('stock.inventory', string='Kiểm kê', required=True)
-    company_id = fields.Many2one('res.company', string='Công ty', required=True)
-    stock_take_manager = fields.Many2one('res.users', string='Trưởng ban kiểm kê', required=True)
-    
-    
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+
+
+    name = fields.Char(string='Tên')
+    inventory_adjustment_code = fields.Char(string='Mã Phiếu')
+    state_date = fields.Datetime(
+        'Ngày bắt đầu', default=fields.Datetime.now, tracking=True)
+    end_date = fields.Datetime(
+        'Ngày kết thúc',  default=fields.Datetime.now, tracking=True)
+    warehouse_id = fields.Many2one('stock.warehouse', string='Kho')
+    company_id = fields.Many2one('res.company', string='Công ty')
+    stock_take_manager = fields.Many2one('res.users', string='Trưởng ban kiểm kê')
+    state = fields.Selection([
+        ('pending', 'chờ phê duyệt'),
+        ('approved', 'đã phê duyệt'),
+        ('rejected', 'từ chối phê duyệt'),
+    ], string='Trạng thái', default='pending')
+
     #define all the methods here
 
     def action_create_inventory_adjustment(self):
-
         inventory_adj = self.env['inventory.adjustment'].create({
             'name': self.name,
             'inventory_adjustment_code': self.inventory_adjustment_code,
             'state_date': self.state_date,
             'end_date': self.end_date,
-            'warehouse_id': self.warehouse_id.id,
-            'stock_inventory_id': self.stock_inventory_id.id,
-            'company_id': self.company_id.id,
-            'stock_take_manager': self.stock_take_manager.id,
+            'warehouse_id': self.warehouse_id.id if self.warehouse_id else False,
+            'company_id': self.company_id.id if self.company_id else False,
+            'stock_take_manager': self.stock_take_manager.id if self.stock_take_manager else False,
         })
 
         return {
