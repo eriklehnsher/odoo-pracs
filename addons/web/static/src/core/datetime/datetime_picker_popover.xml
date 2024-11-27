@@ -10,7 +10,7 @@
                         t-on-click="props.close"
                     >
                         <i class="fa fa-check" />
-                        <span>Apply</span>
+                        <span>Xác Nhận</span>
                     </button>
                 </t>
             </t>

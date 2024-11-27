@@ -8,7 +8,7 @@
         "stock",
     ],
     "data": [
-        # "views/stock_picking_inherit_view.xml",
+        "views/inventory_adjustment_view.xml",
         # "views/stock_move_inherit_view.xml",
     ],
 }

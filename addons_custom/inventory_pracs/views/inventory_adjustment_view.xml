@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="inventory_adjustment_form_view" model="ir.ui.view">
+            <field name="name">inventory.adjustment.form</field>
+            <field name="model">inventory.adjustment</field>
+            <field name="arch" type="xml">
+              <form string="Inventory Adjustment">
+                  <header>
+                    <button name="action_start" string="Start Inventory" type="object" class="oe_highlight"/>
+                    <button name="action_validate" string="Validate Inventory" type="object" class="oe_highlight"/>
+                    <button name="action_cancel" string="Cancel Inventory" type="object" class="oe_highlight"/>
+                  </header>
+                <sheet>
+                  <group>
+                    <field name="name"/>
+                    <field name="inventory_adjustment_code"/>
+                    <field name="state_date"/>
+                    <field name="end_date"/>
+                  </group>
+                    <group>
+                    <field name="warehouse_id"/>
+                    <field name="stock_inventory_id"/>
+                    <field name="company_id"/>
+                    <field name="stock_take_manager"/>
+                  </group>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="inventory_adjustment_tree_view" model="ir.ui.view">
+            <field name="name">inventory.adjustment.tree</field>
+            <field name="model">inventory.adjustment</field>
+            <field name="arch" type="xml">
+                <tree string="Inventory Adjustment">
+                    <field name="name"/>
+                    <field name="inventory_adjustment_code"/>
+                    <field name="state_date"/>
+                    <field name="end_date"/>
+                    <field name="warehouse_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_create_inventory_adjustment" model="ir.actions.act_window">
+            <field name="name">Inventory Adjustment</field>
+            <field name="res_model">inventory.adjustment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_inventory_adjustment" name="Inventory Adjustment" parent="stock.menu_stock_adjustments" action="action_create_inventory_adjustment"/>
+    </data>
+</odoo>
