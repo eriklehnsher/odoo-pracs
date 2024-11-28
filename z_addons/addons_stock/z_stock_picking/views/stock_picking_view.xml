@@ -31,9 +31,9 @@
                             class="btn btn-secondary"/>
                 </xpath>
 
-                <xpath expr="//button[@name='229']" position="replace">
-                    <button name="229" string="Return" invisible="True" type="action" groups="base.group_user" data-hotkey="k"/>
-                </xpath>
+<!--                <xpath expr="//button[@name='229']" position="replace">-->
+<!--                    <button name="229" string="Return" invisible="True" type="action" groups="base.group_user" data-hotkey="k"/>-->
+<!--                </xpath>-->
 
                 <xpath expr="//field[@name='picking_type_id']" position="attributes">
                     <attribute name="invisible">True</attribute>
