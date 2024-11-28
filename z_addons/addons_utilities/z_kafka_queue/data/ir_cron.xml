@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_get_message_master_data" model="ir.cron">
+            <field name="name">Kafka: Get message master data</field>
+            <field name="model_id" ref="model_kafka_queue_consumer"/>
+            <field name="state">code</field>
+            <field name="code">model.receive_response('erp.to.wms.master', '14.160.32.8:9093', 'erp_to_wms_master_group')</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall"
+                   eval="(DateTime.now() + relativedelta(minutes=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active">False</field>
+        </record>
+
+        <record id="action_internal_request" model="ir.cron">
+            <field name="name">Kafka: Internal use request </field>
+            <field name="model_id" ref="model_internal_request_consumer"/>
+            <field name="state">code</field>
+            <field name="code">model.receive_response(['erp.to.wms.internaluse.request', 'erp.to.wms.internal.request', 'erp.to.wms.poimportgood.request', 'erp.to.wms.internal.response'], '14.160.32.8:9093',
+                                                      'erp_to_wms_internaluse_request_group')</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall"
+                   eval="(DateTime.now() + relativedelta(minutes=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active">False</field>
+        </record>
+
+        <record id="action_stock_inventory_kafka" model="ir.cron">
+            <field name="name">Kafka: Stock Inventory </field>
+            <field name="model_id" ref="model_stock_inventory_consumer"/>
+            <field name="state">code</field>
+            <field name="code">model.receive_response('erp.to.wms.physicalinv.response', '14.160.32.8:9093',
+                                                      'erp_to_wms_physicalinv_response_group')</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall"
+                   eval="(DateTime.now() + relativedelta(minutes=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active">False</field>
+        </record>
+
+        <record id="action_stock_transfer_kafka" model="ir.cron">
+            <field name="name">Kafka: Stock Transfer </field>
+            <field name="model_id" ref="model_stock_transfer_consumer"/>
+            <field name="state">code</field>
+            <field name="code">model.receive_response(['erp.to.wms.transfer.response', 'erp.to.wms.transfer.request'],
+                                                      '14.160.32.8:9093', 'stock_transfer_group')</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">minutes</field>
+            <field name="numbercall">-1</field>
+            <field name="nextcall"
+                   eval="(DateTime.now() + relativedelta(minutes=1)).strftime('%Y-%m-%d %H:%M:%S')"/>
+            <field name="active">False</field>
+        </record>
+    </data>
+</odoo>

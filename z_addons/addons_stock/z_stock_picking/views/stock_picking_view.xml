@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_picking_view_inherit_for_pick_location" model="ir.ui.view">
+            <field name="name">stock_picking_view_inherit_for_pick_location</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='move_ids_without_package']" position="before">
+                    <header>
+                        <field name="x_picking_type_code" invisible="True"/>
+                        <button name="action_open_location_out_popup"
+                                type="object"
+                                string="Pick Location Out"
+                                class="btn-primary"
+                                invisible="x_picking_type_code == 'incoming'"
+                        />
+                        <button name="action_open_location_in_popup"
+                                type="object"
+                                string="Pick Location In"
+                                class="btn-primary"
+                                invisible="x_picking_type_code == 'outgoing'"
+                        />
+                    </header>
+                </xpath>
+
+                <xpath expr="//button[@name='action_confirm']" position="after">
+                    <field name="is_confirm_internal_export" invisible="1"/>
+                    <button name="push_action" string="Push" type="object"
+                            groups="base.group_no_one"
+                            class="btn btn-secondary"/>
+                </xpath>
+
+                <xpath expr="//button[@name='229']" position="replace">
+                    <button name="229" string="Return" invisible="True" type="action" groups="base.group_user" data-hotkey="k"/>
+                </xpath>
+
+                <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="erp_created_at" invisible="True"/>
+                    <field name="z_transfer_type" readonly="state != 'draft' or erp_created_at" required="True"
+                           invisible="erp_created_at"/>
+                    <field name="z_transfer_type_sync" readonly="state != 'draft' or erp_created_at" required="True"
+                           invisible="not erp_created_at"/>
+                </xpath>
+
+                <xpath expr="//field[@name='location_dest_id'][2]" position="replace">
+                    <field name="location_dest_id" options="{'no_create': True}" invisible="True"
+                           readonly="state == 'done'"/>
+                </xpath>
+
+                <xpath expr="//field[@name='location_id'][2]" position="replace">
+                    <field name="location_id" options="{'no_create': True}"
+                           invisible="True" readonly="state == 'done'"/>
+                </xpath>
+
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="x_warehouse_dest_id_domain_ids" invisible="True"/>
+                    <field name="x_warehouse_id_domain_ids" invisible="True"/>
+                    <field name="is_invisible" invisible="True"/>
+                    <field name="warehouse_id"
+                           invisible="x_picking_type_code == 'incoming' and is_invisible != True"
+                           readonly="state != 'draft' or erp_created_at"
+                           required="True"
+                           domain="[('id', 'in', x_warehouse_id_domain_ids)]"
+                    />
+                    <field name="warehouse_dest_id"
+                           invisible="x_picking_type_code == 'outgoing' and is_invisible == True"
+                           readonly="state != 'draft' or erp_created_at"
+                           required="True"
+                           domain="[('id', 'in', x_warehouse_dest_id_domain_ids)]"
+                    />
+                    <field name="department_id" required="False" readonly="state != 'draft' or erp_created_at"/>
+                    <field name="po_internal_invoice_info" invisible="z_transfer_type not in ('wms_ho_to_ho', 'erp_internal_sale', 'erp_internal_purchase')"/>
+                    <field name="po_internal_order_info" invisible="z_transfer_type not in ('wms_ho_to_ho', 'erp_internal_sale', 'erp_internal_purchase')"/>
+                </xpath>
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="erp_document_no" readonly="True"/>
+                    <field name="erp_document_id" readonly="True"/>
+                    <field name="user_id" readonly="True"/>
+                    <field name="so_internal_invoice_info" invisible="z_transfer_type not in ('wms_ho_to_ho', 'erp_internal_sale', 'erp_internal_purchase')"/>
+                    <field name="so_internal_order_info" invisible="z_transfer_type not in ('wms_ho_to_ho', 'erp_internal_sale', 'erp_internal_purchase')"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="readonly">erp_created_at</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='move_ids_without_package']" position="attributes">
+                    <attribute name="readonly">(state == 'done' and is_locked) or erp_created_at</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

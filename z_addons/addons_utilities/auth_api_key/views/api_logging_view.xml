@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="api_logging_tree_view" model="ir.ui.view">
+            <field name="name">api.logging.tree.view</field>
+            <field name="model">api.logging</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="api_name"/>
+                    <field name="remote_ip"/>
+                    <field name="params"/>
+                    <field name="response_code"/>
+                    <field name="response_message"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="api_logging_form_view" model="ir.ui.view">
+            <field name="name">api.logging.form.view</field>
+            <field name="model">api.logging</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="api_name"/>
+                                <field name="remote_ip"/>
+                                <field name="params"/>
+                            </group>
+                            <group>
+                                <field name="response_code"/>
+                                <field name="response_message"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="api_logging_action" model="ir.actions.act_window">
+            <field name="name">Api Logging</field>
+            <field name="res_model">api.logging</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="api_logging_menu"
+                  name="Api Logging"
+                  parent="base.menu_custom"
+                  action="api_logging_action"
+                  sequence="101"
+        />
+    </data>
+</odoo>

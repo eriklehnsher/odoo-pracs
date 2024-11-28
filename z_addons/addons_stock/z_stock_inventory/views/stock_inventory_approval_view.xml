@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_inventory_approval_tree_view" model="ir.ui.view">
+            <field name="name">stock.inventory.approval.tree.view</field>
+            <field name="model">stock.inventory.approval</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="level"/>
+                    <field name="user_ids" widget="many2many_tags"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_inventory_approval_action" model="ir.actions.act_window">
+            <field name="name">Stock Inventory Approval</field>
+            <field name="res_model">stock.inventory.approval</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="stock_inventory_approval_menu"
+                  name="Stock Inventory Approval"
+                  action="stock_inventory_approval_action"
+                  parent="stock.menu_stock_config_settings"
+                  sequence="69"
+        />
+    </data>
+</odoo>

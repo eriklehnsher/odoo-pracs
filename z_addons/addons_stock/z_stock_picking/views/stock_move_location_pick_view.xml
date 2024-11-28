@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_move_location_pick_view" model="ir.ui.view">
+            <field name="name">stock_move_location_pick_view</field>
+            <field name="model">stock.move.location.pick</field>
+            <field name="arch" type="xml">
+                <form js_class="pick_location_barcode_js_class">
+                    <field name="file_binary" filename="file_binary_name" invisible="not can_edit"/>
+                    <field name="file_binary_name" invisible="True"/>
+                    <button name="action_download" string="Download" type="object" class="btn-secondary"
+                            invisible="not can_edit"/>
+                    <button name="action_import_location_pick" string="Import" type="object" class="btn-primary"
+                            invisible="not file_binary or not can_edit"
+                    />
+                    <field name="type" invisible="True"/>
+                    <field name="can_edit" invisible="True"/>
+                    <sheet>
+                        <field name="move_location_pick_ids" readonly="not can_edit">
+                            <tree editable="bottom">
+                                <field name="product_id" options="{'no_open': True, 'no_create': True}" required="True"/>
+                                <field name="is_out_of_package" column_invisible="parent.type == 'pick_in'"/>
+                                <field name="is_create_new_package" column_invisible="parent.type == 'pick_out'"/>
+                                <field name="barcode"/>
+                                <field name="quantity"/>
+                                <field name="package_id"
+                                       domain="[('id', 'in', package_ids)]"
+                                />
+                                <field name="uom_id" required="True" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="location_id" domain="[('id', 'in', location_out_ids)]"
+                                       options="{'no_open': True, 'no_create': True}" column_invisible="parent.type == 'pick_in'"/>
+                                <field name="location_id" domain="[('id', 'in', location_in_ids)]"
+                                       options="{'no_open': True, 'no_create': True}" column_invisible="parent.type == 'pick_out'"/>
+                                <field name="expired_date"/>
+                                <field name="location_out_ids" column_invisible="True"/>
+                                <field name="location_in_ids" column_invisible="True"/>
+                                <field name="package_ids" column_invisible="True"/>
+                                <field name="move_location_pick_id" column_invisible="True"/>
+                            </tree>
+                        </field>
+                    </sheet>
+                    <footer>
+                        <button string="Pick Location" name="action_pick_location"
+                                class="btn-primary"
+                                type="object"
+                                invisible="not can_edit"
+                        />
+<!--                        <button string="Return Default" name="action_return_default"-->
+<!--                                class="btn-secondary"-->
+<!--                                type="object"-->
+<!--                                invisible="not can_edit"-->
+<!--                        />-->
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

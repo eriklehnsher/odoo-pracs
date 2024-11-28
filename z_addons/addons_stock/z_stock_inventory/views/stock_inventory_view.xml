@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_inventory_tree_view" model="ir.ui.view">
+            <field name="name">stock.inventory.tree.view</field>
+            <field name="model">stock.inventory</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_inventory_form_view" model="ir.ui.view">
+            <field name="name">stock.inventory.form.view</field>
+            <field name="model">stock.inventory</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="start_inventory" type="object" string="Start Inventory" class="btn btn-primary"
+                                invisible="state == 'done' or state == 'progress'"
+                        />
+                        <button name="action_confirm_for_approval" type="object" string="Confirm" class="btn btn-primary"
+                                invisible="state != 'progress' or is_approval"
+                        />
+                        <button name="action_confirm" type="object" string="Confirm" class="btn btn-primary"
+                                invisible="not state_approval or state_approval != 'approved'"
+                        />
+                        <button name="action_scan_barcode" type="object" string="Scan Barcode" class="btn btn-primary"
+                                invisible="state != 'progress'"
+                        />
+                        <field name="state" widget="statusbar"/>
+                        <field name="is_approval" invisible="True"/>
+                    </header>
+                    <header invisible="not is_approval">
+                        <button name="action_require_approval" type="object" string="Require Approval" class="btn btn-primary"
+                                invisible="not is_approval or state_approval != ''"
+                        />
+                        <button name="action_approval" type="object" string="Approved" class="btn btn-primary"
+                                invisible="not is_approval or state_approval != 'waiting_approval'"
+                        />
+                        <button name="action_reject" type="object" string="Reject" class="btn btn-primary"
+                                invisible="not is_approval or state_approval != 'waiting_approval'"
+                        />
+                        <field name="state_approval" widget="statusbar" options="{'clickable': True}"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1 class="d-flex">
+                                <field name="name" required="True" readonly="state != 'draft'"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" readonly="True"/>
+                                <field name="date" required="True" readonly="state != 'draft'"/>
+                                <field name="warehouse_domain_ids" invisible="True"/>
+                                <field name="warehouse_id" domain="[('id', 'in', warehouse_domain_ids)]"
+                                       readonly="state != 'draft'"/>
+                                <field name="location_ids" widget="many2many_tags"
+                                       domain="[('usage', 'in', ['internal', 'transit']), ('warehouse_id', '=', warehouse_id)]"
+                                       readonly="state != 'draft'"
+                                />
+                            </group>
+                            <group>
+                                <field name="company_id" readonly="True"/>
+                                <field name="reason" readonly="state != 'draft'"/>
+                                <field name="inventory_plan_id" readonly="True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Details">
+                                <field name="inventory_line_ids" readonly="state == 'done'">
+                                    <tree editable="bottom">
+                                        <field name="company_id" column_invisible="True"/>
+                                        <field name="warehouse_id"/>
+                                        <field name="location_id"/>
+                                        <field name="product_id"/>
+                                        <field name="lot_id"/>
+                                        <field name="package_id"/>
+                                        <field name="quantity"/>
+                                        <field name="inventory_quantity"/>
+                                        <field name="inventory_diff_quantity"/>
+                                        <field name="inventory_date"/>
+                                        <field name="user_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="approval" string="Approvals" invisible="state_approval == ''">
+                                <field name="approval_line_ids" readonly="True">
+                                    <tree>
+                                        <field name="level"/>
+                                        <field name="user_ids" widget="many2many_tags"/>
+                                        <field name="is_approved"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_inventory_view_kanban" model="ir.ui.view">
+            <field name="name">stock.inventory.view.kanban</field>
+            <field name="model">stock.inventory</field>
+            <field name="arch" type="xml">
+                <kanban create="0" import="0" js_class="stock_barcode_list_kanban" sample="1"
+                        action="action_client_action" type="object"
+                        class="o_kanban_dashboard o_emphasize_colors">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_record_top">
+                                    <div class="o_kanban_record_headings">
+                                        <strong class="o_kanban_record_title">
+                                            <span>
+                                                <field name="name"/>
+                                            </span>
+                                        </strong>
+                                    </div>
+                                    <field name="state" widget="label_selection"
+                                           options="{'classes': {
+                                        'draft': 'default',
+                                        'progress': 'warning',
+                                        'done': 'success'}}"/>
+                                </div>
+                                <div class="o_kanban_record_bottom">
+                                    <div class="oe_kanban_bottom_left">
+                                        <field name="code" readonly="True"/>
+                                    </div>
+                                    <div class="oe_kanban_bottom_right">
+                                        <field name="date" readonly="True"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="stock_inventory_barcode_view_info" model="ir.ui.view">
+            <field name="name">stock.inventory.barcode.view.info</field>
+            <field name="model">stock.inventory</field>
+            <field name="priority">2000</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="state" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_inventory_action" model="ir.actions.act_window">
+            <field name="name">stock.inventory.action</field>
+            <field name="res_model">stock.inventory</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="stock_inventory_action_kanban" model="ir.actions.act_window">
+            <field name="name">stock.inventory.action.kanban</field>
+            <field name="res_model">stock.inventory</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="stock_inventory_view_kanban"/>
+        </record>
+
+        <menuitem id="stock_inventory_menu"
+                  name="Stock Inventory"
+                  parent="stock.menu_stock_adjustments"
+                  action="stock_inventory_action"
+                  sequence="22"
+        />
+    </data>
+</odoo>

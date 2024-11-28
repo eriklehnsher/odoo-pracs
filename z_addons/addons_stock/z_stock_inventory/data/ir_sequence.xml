@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="True">
+        <record id="tracking_stock_inventory" model="ir.sequence">
+            <field name="name">Tracking Stock Inventory</field>
+            <field name="code">tracking.stock.inventory</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="tracking_stock_inventory_request" model="ir.sequence">
+            <field name="name">Tracking Stock Inventory Request</field>
+            <field name="code">tracking.stock.inventory.request</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record id="tracking_stock_inventory_plan" model="ir.sequence">
+            <field name="name">Tracking Stock Inventory Plan</field>
+            <field name="code">tracking.stock.inventory.plan</field>
+            <field name="padding">6</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_inventory,access_stock_inventory,model_stock_inventory,,1,1,1,1
+access_stock_inventory_request,access_stock_inventory_request,model_stock_inventory_request,,1,1,1,1
+access_stock_inventory_plan,access_stock_inventory_plan,model_stock_inventory_plan,,1,1,1,1
+access_stock_inventory_plan_line,access_stock_inventory_plan_line,model_stock_inventory_plan_line,,1,1,1,1
+access_stock_inventory_approval,access_stock_inventory_approval,model_stock_inventory_approval,,1,1,1,1
+access_stock_inventory_approval_config,access_stock_inventory_approval_config,model_stock_inventory_approval_config,,1,1,1,1

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="kafka_queue_producer_tree_view" model="ir.ui.view">
+            <field name="name">kafka.queue.producer.tree.view</field>
+            <field name="model">kafka.queue.producer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="topic"/>
+                    <field name="host"/>
+                    <field name="port"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="kafka_queue_producer_form_view" model="ir.ui.view">
+            <field name="name">kafka.queue.producer.form.view</field>
+            <field name="model">kafka.queue.producer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="publish" type="object" string="Publish" class="btn btn-primary"/>
+                        <button name="create_topic" type="object" string="Create Topic" class="btn btn-primary"/>
+                        <button name="delete_topic" type="object" string="Delete Topic" class="btn btn-danger"
+                                confirm="Are you sure want to delete this topic?"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="topic" required="True"/>
+                                <field name="host"/>
+                                <field name="port"/>
+                                <field name="client_id"/>
+                            </group>
+                            <group>
+                                <field name="message"/>
+                                <field name="partition"/>
+                                <field name="replication"/>
+                                <field name="active" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="kafka_queue_producer_action" model="ir.actions.act_window">
+            <field name="name">Kafka queue producer</field>
+            <field name="res_model">kafka.queue.producer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="kafka_queue_producer_menu"
+                  name="Kafka Producer"
+                  parent="base.menu_custom"
+                  action="kafka_queue_producer_action"
+                  sequence="106"
+        />
+    </data>
+</odoo>

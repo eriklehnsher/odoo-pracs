@@ -1,0 +1,112 @@
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid ""
+"A product tracked by serial numbers can't have multiple quantities for the "
+"same serial number."
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Barcode scan is ambiguous with several model: %s. Use the most likely."
+msgstr ""
+
+#. module: z_stock_barcode
+#: model:ir.model,name:z_stock_barcode.model_stock_location
+msgid "Inventory Locations"
+msgstr "Vị trí kiểm kho"
+
+#. module: z_stock_barcode
+#: model:ir.model,name:z_stock_barcode.model_stock_quant
+msgid "Quants"
+msgstr "Quant"
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan a location"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan a product"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan a product in %s or scan another location"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan a warehouse or a location"
+msgstr "Quét một kho hoặc một địa điểm"
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan lot numbers for product %s to change their quantity"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan more products in %s or scan another location"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "Scan serial numbers for product %s to change their quantity"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid ""
+"The location corresponding to the barcode you just scanned does not belong "
+"to any warehouse."
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "The scanned serial number is already used."
+msgstr ""
+
+#. module: z_stock_barcode
+#: model:ir.model.fields,field_description:z_stock_barcode.field_stock_quant__warehouse_id
+msgid "Warehouse"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid ""
+"You are expected to scan one or more products or a package available at the "
+"picking location"
+msgstr ""
+
+#. module: z_stock_barcode
+#. odoo-javascript
+#: code:addons/z_stock_barcode/static/src/models/barcode_quant_model.js:0
+#, python-format
+msgid "You are expected to scan one or more products."
+msgstr ""

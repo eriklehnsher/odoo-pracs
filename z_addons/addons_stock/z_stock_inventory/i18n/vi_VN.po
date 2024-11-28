@@ -1,0 +1,714 @@
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "%s can't be inventoried. Only storable products can be inventoried."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_needaction
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_needaction
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_ids
+msgid "Activities"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_exception_decoration
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_exception_decoration
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_state
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_state
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_state
+msgid "Activity State"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_type_icon
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_type_icon
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_type_icon
+msgid "Activity Type Icon"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_attachment_count
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_attachment_count
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.actions.client,name:z_stock_inventory.stock_inventory_client_action
+msgid "Barcode Stock Inventory Client Action"
+msgstr "Kiểm kê bằng mã vạch"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_plan__state__cancel
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+msgid "Cancel"
+msgstr "Huỷ"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__categ_id
+msgid "Category"
+msgstr "Nhóm hàng"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__code
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__code
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__code
+msgid "Code"
+msgstr "Mã phiếu"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__company_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__company_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_form_view
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_request_view_form
+msgid "Confirm"
+msgstr "Xác nhận"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_plan__state__confirmed
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_request__state__confirmed
+msgid "Confirmed"
+msgstr "Đã xác nhận"
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+msgid "Create Inventory"
+msgstr "Tạo phiếu kiểm kê"
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_request_view_form
+msgid "Create Plan"
+msgstr "Tạo kế hoạch"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__create_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__create_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__create_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__create_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__create_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__create_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__date
+msgid "Date"
+msgstr "Ngày kiểm kê"
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_form_view
+msgid "Details"
+msgstr "Chi tiết"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__display_name
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__display_name
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__display_name
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory__state__done
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_plan__state__done
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+msgid "Done"
+msgstr "Hoàn thành"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory__state__draft
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_plan__state__draft
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory_request__state__draft
+msgid "Draft"
+msgstr "Nháp"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_client_id
+msgid "ERP Client ID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_created_at
+msgid "ERP Created At"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_created_uid
+msgid "ERP Created UID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_document_id
+msgid "ERP Document ID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_document_no
+msgid "ERP Document No"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_document_state
+msgid "ERP Document State"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_document_type_id
+msgid "ERP Document Type ID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_message_create
+msgid "ERP Message Create"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_message_error
+msgid "ERP Message Error"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_message_receive
+msgid "ERP Message Receive"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_org_id
+msgid "ERP Organization ID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_res_company_id
+msgid "ERP Res Company"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__erp_updated_at
+msgid "ERP Updated At"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__date_end
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__date_end
+msgid "End Date"
+msgstr "Ngày kết thúc"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_follower_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_follower_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_partner_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_partner_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__activity_type_icon
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__activity_type_icon
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__has_message
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__has_message
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__id
+msgid "ID"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_exception_icon
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_exception_icon
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_exception_icon
+msgid "Icon"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__activity_exception_icon
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__activity_exception_icon
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__message_needaction
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__message_needaction
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__message_has_error
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__message_has_sms_error
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__message_has_error
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__message_has_sms_error
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__message_has_error
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__inventory_ids
+msgid "Inventories"
+msgstr "Phiếu kiểm kê"
+
+#. module: z_stock_inventory
+#. odoo-python
+#: code:addons/z_stock_inventory/models/stock_inventory.py:0
+#, python-format
+msgid "Inventory Adjustment"
+msgstr "Điều chỉnh tồn kho"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__inventory_line_ids
+msgid "Inventory Lines"
+msgstr "Chi tiết"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__inventory_plan_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__inventory_plan_id
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_request_view_form
+msgid "Inventory Plan"
+msgstr "Kế hoạch kiểm kê"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_is_follower
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_is_follower
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__write_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__write_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__write_uid
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__write_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__write_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__write_date
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__inventory_plan_line_ids
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+msgid "Lines"
+msgstr "Chi tiết"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__location_id
+msgid "Location"
+msgstr "Vị trí"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__location_ids
+msgid "Locations"
+msgstr "Vị trí"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_has_error
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_has_error
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__my_activity_date_deadline
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__my_activity_date_deadline
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__name
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__name
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__name
+msgid "Name"
+msgstr "Tên phiếu"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_date_deadline
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_date_deadline
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_summary
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_summary
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_summary
+msgid "Next Activity Summary"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_type_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_type_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_type_id
+msgid "Next Activity Type"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__note
+msgid "Note"
+msgstr "Ghi chú"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_needaction_counter
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_needaction_counter
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_has_error_counter
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_has_error_counter
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__message_needaction_counter
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__message_needaction_counter
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__message_has_error_counter
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__message_has_error_counter
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Package type %s was correctly applied to the package %s"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__plan_ids
+msgid "Plans"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Print Inventory"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields.selection,name:z_stock_inventory.selection__stock_inventory__state__progress
+msgid "Progress"
+msgstr "Đang kiểm kê"
+
+#. module: z_stock_inventory
+#: model:ir.model,name:z_stock_inventory.model_stock_quant
+msgid "Quants"
+msgstr "Quant"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__reason
+msgid "Reason"
+msgstr "Lý do"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__activity_user_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__activity_user_id
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__activity_user_id
+msgid "Responsible User"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__message_has_sms_error
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__message_has_sms_error
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_form_view
+msgid "Scan Barcode"
+msgstr "Quét mã vạch"
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan a location"
+msgstr "Quét một vị trí"
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan a product"
+msgstr "Quét một sản phẩm"
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan a product in %s or scan another location"
+msgstr "Quét một sản phẩm trong %s hoặc một vị trí khác"
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan lot numbers for product %s to change their quantity"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan more products in %s or scan another location"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Scan serial numbers for product %s to change their quantity"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid ""
+"Scanned quantity uses %s as Unit of Measure, but this UoM is not compatible "
+"with the product's one (%s)."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__date_start
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__date_start
+msgid "Start Date"
+msgstr "Ngày bắt đầu"
+
+#. module: z_stock_inventory
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_form_view
+msgid "Start Inventory"
+msgstr "Bắt đầu kiểm kê"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__state
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__state
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__state
+msgid "State"
+msgstr "Trạng thái"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__activity_state
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__activity_state
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/main_menu.xml:0
+#: model:ir.model,name:z_stock_inventory.model_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_quant__stock_inventory_id
+#: model:ir.ui.menu,name:z_stock_inventory.stock_inventory_menu
+#: model_terms:ir.ui.view,arch_db:z_stock_inventory.stock_inventory_plan_form_view
+#, python-format
+msgid "Stock Inventory"
+msgstr "Kiểm kê kho"
+
+#. module: z_stock_inventory
+#: model:ir.actions.act_window,name:z_stock_inventory.stock_inventory_plan_action
+#: model:ir.model,name:z_stock_inventory.model_stock_inventory_plan
+#: model:ir.ui.menu,name:z_stock_inventory.stock_inventory_plan_menu
+msgid "Stock Inventory Plan"
+msgstr "Kế hoạch kiểm kê"
+
+#. module: z_stock_inventory
+#: model:ir.model,name:z_stock_inventory.model_stock_inventory_plan_line
+msgid "Stock Inventory Plan Line"
+msgstr "Chi tiết"
+
+#. module: z_stock_inventory
+#: model:ir.actions.act_window,name:z_stock_inventory.stock_inventory_request_action
+#: model:ir.model,name:z_stock_inventory.model_stock_inventory_request
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__inventory_request_id
+#: model:ir.ui.menu,name:z_stock_inventory.stock_inventory_request_menu
+msgid "Stock Inventory Request"
+msgstr "Yêu cầu kiểm kê"
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "The Stock Inventory has been validated"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "The inventory adjustment has been validated"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "There is nothing to apply in this page."
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "There is nothing to print in this page."
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "This inventory sheet is complete."
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "This package is already scanned."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__activity_exception_decoration
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__activity_exception_decoration
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__user_id
+msgid "User"
+msgstr "Trưởng ban kiểm kê"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__user_host_id
+msgid "User Host"
+msgstr "Nhân sự chủ trì"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan_line__user_sup_id
+msgid "User Support"
+msgstr "Nhân dự hỗ trợ"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__warehouse_id
+msgid "Warehouse"
+msgstr "Kho"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__warehouse_domain_ids
+msgid "Warehouse Domain"
+msgstr "Kho"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__warehouse_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__warehouse_ids
+msgid "Warehouses"
+msgstr "Kho"
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__warehouse_domain_ids
+msgid "Warehouses Domain"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory__website_message_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_plan__website_message_ids
+#: model:ir.model.fields,field_description:z_stock_inventory.field_stock_inventory_request__website_message_ids
+msgid "Website Messages"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory__website_message_ids
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_plan__website_message_ids
+#: model:ir.model.fields,help:z_stock_inventory.field_stock_inventory_request__website_message_ids
+msgid "Website communication history"
+msgstr ""
+
+#. module: z_stock_inventory
+#. odoo-javascript
+#: code:addons/z_stock_inventory/static/src/models/barcode_stock_inventory_model.js:0
+#, python-format
+msgid "Wrong Unit of Measure"
+msgstr ""
+
+#. module: z_stock_inventory
+#: model:ir.actions.act_window,name:z_stock_inventory.stock_inventory_action
+msgid "stock.inventory.action"
+msgstr "Kiểm kê kho"
+
+#. module: z_stock_inventory
+#: model:ir.actions.act_window,name:z_stock_inventory.stock_inventory_action_kanban
+msgid "stock.inventory.action.kanban"
+msgstr "Kiểm kê kho"

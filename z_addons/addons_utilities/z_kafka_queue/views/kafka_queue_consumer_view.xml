@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="kafka_queue_consumer_tree_view" model="ir.ui.view">
+            <field name="name">kafka.queue.consumer.tree.view</field>
+            <field name="model">kafka.queue.consumer</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="topic"/>
+                    <field name="group_id"/>
+                    <field name="host"/>
+                    <field name="port"/>
+                    <field name="active" widget="boolean_toggle"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="kafka_queue_consumer_form_view" model="ir.ui.view">
+            <field name="name">kafka.queue.consumer.form.view</field>
+            <field name="model">kafka.queue.consumer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="object" name="start_consumer" string="Start" class="btn btn-primary"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="topic"/>
+                                <field name="group_id"/>
+                                <field name="host"/>
+                                <field name="port"/>
+                            </group>
+                            <group>
+                                <field name="last_offset_message" readonly="True"/>
+                                <field name="offset"/>
+                                <field name="limit"/>
+                                <field name="active" widget="boolean_toggle"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="kafka_queue_consumer_action" model="ir.actions.act_window">
+            <field name="name">Kafka queue consumer</field>
+            <field name="res_model">kafka.queue.consumer</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="kafka_queue_consumer_menu"
+                  name="Kafka Consumer"
+                  parent="base.menu_custom"
+                  action="kafka_queue_consumer_action"
+                  sequence="105"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_inventory_plan_tree_view" model="ir.ui.view">
+            <field name="name">stock.inventory.plan.tree.view</field>
+            <field name="model">stock.inventory.plan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_inventory_plan_form_view" model="ir.ui.view">
+            <field name="name">stock.inventory.plan.form.view</field>
+            <field name="model">stock.inventory.plan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_confirm" string="Confirm" type="object" class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_create_stock_inventory" string="Create Inventory" type="object" class="btn-primary"
+                                invisible="state != 'confirmed'"/>
+                        <button name="action_done" string="Done" type="object" class="btn-primary"
+                                invisible="state != 'confirmed'"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="btn-secondary"
+                                invisible="state in ('cancel', 'done')"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                    string="Stock Inventory"
+                                    name="action_view_stock_inventory"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o"
+                            />
+                        </div>
+                        <div class="oe_title">
+                            <h1 class="d-flex">
+                                <field name="name" required="True" readonly="state != 'draft'"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" readonly="True"/>
+                                <field name="date_start" required="True" readonly="state != 'draft'"/>
+                                <field name="date_end" required="True" readonly="state != 'draft'"/>
+                                <field name="warehouse_domain_ids" invisible="True"/>
+                                <field name="warehouse_ids" widget="many2many_tags"
+                                       domain="[('id', 'in', warehouse_domain_ids)]"
+                                       options="{'no_create': True, 'no_open': True}"
+                                       readonly="state != 'draft'"
+                                />
+                                <field name="inventory_request_id" readonly="True"/>
+                            </group>
+                            <group>
+                                <field name="company_id" readonly="True"/>
+                                <field name="user_id" required="True" readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="plan_lines" string="Lines">
+                                <field name="state" invisible="True"/>
+                                <field name="inventory_plan_line_ids" readonly="state != 'draft'">
+                                    <tree editable="bottom">
+                                        <field name="categ_id"/>
+                                        <field name="location_id"/>
+                                        <field name="user_host_id"/>
+                                        <field name="user_sup_id"/>
+                                        <field name="date_start"/>
+                                        <field name="date_end"/>
+                                        <field name="note"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_inventory_plan_action" model="ir.actions.act_window">
+            <field name="name">Stock Inventory Plan</field>
+            <field name="res_model">stock.inventory.plan</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="stock_inventory_plan_menu"
+                  name="Stock Inventory Plan"
+                  parent="stock.menu_stock_adjustments"
+                  action="stock_inventory_plan_action"
+                  sequence="21"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data noupdate="1">
+        <record id="kafka_queue_sync_master_data" model="ir.config_parameter">
+            <field name="key">kafka_queue_sync_master_data</field>
+            <field name="value">erp.to.wms.master</field>
+        </record>
+
+        <!-- Stock Transfer WMS <==> ERP -->
+        <!-- WMS request, ERP response -->
+        <record id="kafka_queue_wms_to_erp_transfer_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_transfer_request</field>
+            <field name="value">wms.to.erp.transfer.request</field>
+        </record>
+
+        <record id="kafka_queue_erp_to_wms_transfer_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_transfer_response</field>
+            <field name="value">erp.to.wms.transfer.response</field>
+        </record>
+
+        <!-- ERP request, WMS response-->
+        <record id="kafka_queue_erp_to_wms_transfer_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_transfer_request</field>
+            <field name="value">erp.to.wms.transfer.request</field>
+        </record>
+
+        <record id="kafka_queue_wms_to_erp_transfer_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_transfer_response</field>
+            <field name="value">wms.to.erp.transfer.response</field>
+        </record>
+
+        <!-- Stock Internal Use ERP ==> WMS -->
+        <record id="kafka_queue_erp_to_wms_internaluse_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_internaluse_request</field>
+            <field name="value">erp.to.wms.internaluse.request</field>
+        </record>
+
+        <record id="kafka_queue_wms_to_erp_internaluse_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_internaluse_response</field>
+            <field name="value">wms.to.erp.internaluse.response</field>
+        </record>
+
+        <!-- Stock Internal WMS <==> ERP, Mua hàng nội bộ WMS <==> ERP -->
+        <!--  WMS to ERP-->
+        <record id="kafka_queue_wms_to_erp_internal_transfer_region_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_internal_transfer_region_request</field>
+            <field name="value">wms.to.erp.internal.request</field>
+        </record>
+
+        <record id="kafka_queue_erp_to_wms_internal_transfer_region_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_internal_transfer_region_response</field>
+            <field name="value">erp.to.wms.internal.response</field>
+        </record>
+
+        <!--  ERP to WMS-->
+        <record id="kafka_queue_erp_to_wms_internal_transfer_region_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_internal_transfer_region_request</field>
+            <field name="value">erp.to.wms.internal.request</field>
+        </record>
+
+        <record id="kafka_queue_wms_to_erp_internal_transfer_region_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_internal_transfer_region_response</field>
+            <field name="value">wms.to.erp.internal.response</field>
+        </record>
+
+        <!--Đồng bộ kiểm kê-->
+        <!-- WMS to ERP -->
+        <record id="kafka_queue_wms_to_erp_physicalinv_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_physicalinv_request</field>
+            <field name="value">wms.to.erp.physicalinv.request</field>
+        </record>
+
+        <record id="kafka_queue_erp_to_wms_physicalinv_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_physicalinv_response</field>
+            <field name="value">erp.to.wms.physicalinv.response</field>
+        </record>
+
+        <!-- ERP to WMS-->
+        <record id="kafka_queue_erp_to_wms_physicalinv_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_physicalinv_request</field>
+            <field name="value">erp.to.wms.physicalinv.request</field>
+        </record>
+
+        <record id="kafka_queue_wms_to_erp_physicalinv_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_physicalinv_response</field>
+            <field name="value">wms.to.erp.physicalinv.response</field>
+        </record>
+
+        <!-- Nhập kho mua hàng-->
+        <record id="kafka_queue_erp_to_wms_poimportgood_request" model="ir.config_parameter">
+            <field name="key">kafka_queue_erp_to_wms_poimportgood_request</field>
+            <field name="value">erp.to.wms.poimportgood.request</field>
+        </record>
+
+        <record id="kafka_queue_wms_to_erp_poimportgood_response" model="ir.config_parameter">
+            <field name="key">kafka_queue_wms_to_erp_poimportgood_response</field>
+            <field name="value">wms.to.erp.poimportgood.response</field>
+        </record>
+
+        <record id="kafka_consumer_host" model="ir.config_parameter">
+            <field name="key">kafka_consumer_host</field>
+            <field name="value">14.160.32.8:9093</field>
+        </record>
+
+        <record id="kafka_consumer_last_offset" model="ir.config_parameter">
+            <field name="key">kafka_consumer_last_offset</field>
+            <field name="value">600000</field>
+        </record>
+    </data>
+</odoo>

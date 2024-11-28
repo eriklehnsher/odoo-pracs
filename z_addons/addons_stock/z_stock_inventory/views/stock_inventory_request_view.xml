@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_inventory_request_view_tree" model="ir.ui.view">
+            <field name="name">stock.inventory.request.view.tree</field>
+            <field name="model">stock.inventory.request</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_inventory_request_view_form" model="ir.ui.view">
+            <field name="name">stock.inventory.request.view.form</field>
+            <field name="model">stock.inventory.request</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_create_plan" type="object" class="btn-primary"
+                                string="Create Plan"
+                                invisible="state == 'draft'"/>
+                        <button name="action_confirm" type="object" class="btn-primary"
+                                string="Confirm"
+                                invisible="state == 'confirmed'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button type="object"
+                                    string="Inventory Plan"
+                                    name="action_view_stock_inventory_plan"
+                                    class="oe_stat_button"
+                                    icon="fa-pencil-square-o"
+                            />
+                        </div>
+                        <div class="oe_title">
+                            <h1 class="d-flex">
+                                <field name="name" required="True" readonly="state == 'confirmed'"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="code" readonly="True"/>
+                                <field name="warehouse_ids" widget="many2many_tags" required="True"
+                                       readonly="state == 'confirmed'"/>
+                            </group>
+                            <group>
+                                <field name="date" required="True" readonly="state == 'confirmed'"/>
+                                <field name="company_id" readonly="True"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="stock_inventory_request_action" model="ir.actions.act_window">
+            <field name="name">Stock Inventory Request</field>
+            <field name="res_model">stock.inventory.request</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="stock_inventory_request_menu"
+                  name="Stock Inventory Request"
+                  parent="stock.menu_stock_adjustments"
+                  action="stock_inventory_request_action"
+                  sequence="20"
+        />
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_kafka_queue_consumer,access_kafka_queue_consumer,model_kafka_queue_consumer,,1,1,1,1
+access_kafka_queue_producer,access_kafka_queue_producer,model_kafka_queue_producer,,1,1,1,1

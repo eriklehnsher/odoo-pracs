@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="action_report_stock_warehouse_print_barcode" model="ir.actions.report">
+            <field name="name">Barcode Warehouse Operation</field>
+            <field name="model">stock.warehouse</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">z_stock_barcode.report_warehouse_barcode</field>
+            <field name="report_file">barcode_warehouse</field>
+            <field name="print_report_name">'Barcode warehouse'</field>
+            <field name="binding_model_id" ref="stock.model_stock_warehouse"/>
+            <field name="binding_type">report</field>
+            <field name="binding_view_types">list,form</field>
+        </record>
+    </data>
+</odoo>
