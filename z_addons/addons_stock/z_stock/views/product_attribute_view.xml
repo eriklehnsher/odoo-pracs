@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="product_attribute_view_form_inherit" model="ir.ui.view">
+            <field name="name">product.attribute.view.form.inherit</field>
+            <field name="model">product.attribute</field>
+            <field name="inherit_id" ref="product.product_attribute_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='attribute_values']" position="replace">
+                    <page string="Attribute Values" name="attribute_values">
+                        <field name="value_ids" widget="one2many" nolabel="1">
+                            <tree string="Values" editable="bottom">
+                                <field name="sequence" widget="handle"/>
+                                <field name="name" required="True"/>
+                                <field name="value" required="True"/>
+                                <field name="display_type" column_invisible="True"/>
+                                <field name="is_custom" groups="product.group_product_variant" column_invisible="parent.display_type == 'multi'"/>
+                                <field name="html_color" column_invisible="parent.display_type != 'color'" invisible="image" widget="color"/>
+                                <field name="image"
+                                       class="oe_avatar text-start float-none"
+                                       column_invisible="parent.display_type != 'color'"
+                                       options="{'size': [70, 70]}"
+                                       widget="image"/>
+                                <field name="default_extra_price" invisible="True"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

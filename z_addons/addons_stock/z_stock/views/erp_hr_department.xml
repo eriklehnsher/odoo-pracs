@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="erp_hr_department_view_form" model="ir.ui.view">
+            <field name="name">erp.hr.department.view.form</field>
+            <field name="model">erp.hr.department</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="description"/>
+                            <field name="active"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="erp_hr_department_view_tree" model="ir.ui.view">
+            <field name="name">erp.hr.department.view.tree</field>
+            <field name="model">erp.hr.department</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="description"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+        <record id="erp_hr_department_action" model="ir.actions.act_window">
+            <field name="name">Bộ phận/Phòng ban</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">erp.hr.department</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem id="erp_hr_department_menu" name="Bộ phận/Phòng ban" parent="stock.menu_stock_config_settings" action="erp_hr_department_action" sequence="100"/>
+    </data>
+</odoo>

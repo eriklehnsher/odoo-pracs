@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record model="product.attribute" id="product_attribute_for_barcode">
+            <field name="name">Barcode</field>
+            <field name="display_type">radio</field>
+            <field name="create_variant">always</field>
+        </record>
+    </data>
+</odoo>

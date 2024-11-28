@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_view_quant_package_form_inherit_barcode" model="ir.ui.view">
+            <field name="name">stock.view.quant.package.form.inherit.barcode</field>
+            <field name="model">stock.quant.package</field>
+            <field name="inherit_id" ref="stock.view_quant_package_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="replace">
+                    <header>
+                        <button name="action_ready" string="Ready" type="object" class="btn-primary"
+                                invisible="state != 'draft'"/>
+                        <button name="action_deactivate" string="Deactivate" type="object" class="btn-secondary"
+                                invisible="state == 'deactive'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="replace">
+                    <field name="location_id" domain="[('usage', '=', 'internal')]" readonly="state != 'draft'"/>
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="brand_segment_id" readonly="state != 'draft'"/>
+                    <field name="partner_id" readonly="state != 'draft'"/>
+                    <field name="barcode"/>
+                </xpath>
+                <xpath expr="//field[@name='pack_date']" position="replace">
+                    <field name="pack_date" readonly="state != 'draft'"/>
+                    <field name="length" readonly="state != 'draft'"/>
+                    <field name="width" readonly="state != 'draft'"/>
+                    <field name="height" readonly="state != 'draft'"/>
+                    <field name="uom_id" readonly="state != 'draft'"/>
+                </xpath>
+                <xpath expr="//field[@name='package_type_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//sheet" position="after">
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

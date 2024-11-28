@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="erp_barcode_tree_view" model="ir.ui.view">
+        <field name="name">erp.barcode.tree.view</field>
+        <field name="model">erp.barcode</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="erp_barcode_value"/>
+                <field name="erp_lot"/>
+                <field name="erp_serial"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="erp_barcode_form_view" model="ir.ui.view">
+        <field name="name">erp.barcode.form.view</field>
+        <field name="model">erp.barcode</field>
+        <field name="arch" type="xml">
+            <form string="ERP Barcode">
+                <group>
+                    <group>
+                        <field name="erp_barcode_value" readonly="True"/>
+                        <field name="erp_serial" readonly="True"/>
+                        <field name="erp_lot" readonly="True"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Attribute">
+                        <field name="barcode_line_ids" readonly="True">
+                            <tree>
+                                <field name="product_attribute_id"/>
+                                <field name="product_attribute_value_id"/>
+                            </tree>
+                        </field>
+                    </page>
+                </notebook>
+            </form>
+        </field>
+    </record>
+
+    <record id="erp_barcode_view_action" model="ir.actions.act_window">
+        <field name="name">ERP Barcode</field>
+        <field name="res_model">erp.barcode</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="erp_barcode_menu"
+              action="erp_barcode_view_action"
+              name="ERP Barcode"
+              parent="stock.menu_product_in_config_stock"
+              sequence="100"
+    />
+</odoo>

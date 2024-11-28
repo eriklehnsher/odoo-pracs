@@ -1,3 +1,5 @@
+from email.policy import default
+
 from odoo import models, fields, api
 
 
@@ -17,11 +19,12 @@ class InventoryAdjustment(models.Model):
     company_id = fields.Many2one('res.company', string='Công ty')
     stock_take_manager = fields.Many2one('res.users', string='Trưởng ban kiểm kê')
     state = fields.Selection([
+        ('draft', 'Bản nháp'),
         ('pending', 'chờ phê duyệt'),
         ('approved', 'đã phê duyệt'),
         ('rejected', 'từ chối phê duyệt'),
-    ], string='Trạng thái', default='pending')
-
+    ], string='Trạng thái', default='draft', tracking=True)
+    picking_type_id = fields.Many2one('stock.picking.type', string='Loại chuyển kho')
     #define all the methods here
 
     def action_create_inventory_adjustment(self):
@@ -34,7 +37,6 @@ class InventoryAdjustment(models.Model):
             'company_id': self.company_id.id if self.company_id else False,
             'stock_take_manager': self.stock_take_manager.id if self.stock_take_manager else False,
         })
-
         return {
             'name': 'Kiểm kê',
             'view_mode': 'form',
@@ -43,12 +45,17 @@ class InventoryAdjustment(models.Model):
             'type': 'ir.actions.act_window',
             'target': 'current',
         }
+    def action_request_approve(self):
+        self.state = 'pending'
+        head_of_stock_take = self.stock_take_manager
+        self.message_post(
+            body='Yêu cầu phê duyệt từ {}'.format(self.env.user.name),
+            partner_ids=[head_of_stock_take.partner_id.id],
+        )
 
-    def action_start(self):
-        pass
-
-    def action_validate(self):
-        pass
-
+    def action_approve(self):
+        self.state = 'approved'
+    def action_reject(self):
+        self.state = 'rejected'
     def action_cancel(self):
-        pass
+        self.state = 'pending'

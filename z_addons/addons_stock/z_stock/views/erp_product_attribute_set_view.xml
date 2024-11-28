@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="erp_product_attribute_set_view_tree" model="ir.ui.view">
+            <field name="name">erp.product.attribute.set.view.tree</field>
+            <field name="model">erp.product.attribute.set</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="erp_product_attribute_set_view_form" model="ir.ui.view">
+            <field name="name">erp.product.attribute.set.view.form</field>
+            <field name="model">erp.product.attribute.set</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                            </group>
+                        </group>
+                        <notebook>
+                        <page name="product_attribute" string="Product Attribute">
+                            <field name="product_attribute_ids"/>
+                        </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="erp_product_attribute_set_action" model="ir.actions.act_window">
+            <field name="name">Product attribute set</field>
+            <field name="res_model">erp.product.attribute.set</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

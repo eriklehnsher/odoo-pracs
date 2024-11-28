@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <menuitem id="product_brand_menu"
+                  name="Thương hiệu (dùng cho hạch toán kế toán)"
+                  action="product_brand_action_view"
+                  parent="stock.menu_product_in_config_stock"
+                  sequence="51"
+        />
+        <menuitem id="erp_brand_segment_menu"
+                  name="Thương hiệu sản phẩm"
+                  action="erp_brand_segment_action"
+                  parent="stock.menu_product_in_config_stock"
+                  sequence="59"
+        />
+        <menuitem id="product_line_menu"
+                  name="Product Lines"
+                  action="product_line_action_view"
+                  parent="stock.menu_product_in_config_stock"
+                  sequence="54"
+        />
+        <menuitem id="product_attribute_set"
+                  name="Product Attribute Sets"
+                  action="erp_product_attribute_set_action"
+                  parent="stock.menu_product_in_config_stock"
+                  sequence="55"
+        />
+
+        <menuitem id="product_gender_menu"
+                  name="Product Genders"
+                  action="product_gender_action_view"
+                  parent="stock.menu_product_in_config_stock"
+                  sequence="58"
+        />
+
+        <menuitem id="menu_tax_and_currency_in_config_stock"
+                  name="Taxes and Currency"
+                  parent="stock.menu_stock_config_settings"
+                  sequence="50"
+        />
+
+        <menuitem id="menu_tax_in_config_stock"
+                  name="Taxes"
+                  parent="menu_tax_and_currency_in_config_stock"
+                  action="account_tax_view_action"
+                  sequence="60"
+        />
+        <menuitem id="menu_currency_in_config_stock"
+                  name="Currencies"
+                  parent="menu_tax_and_currency_in_config_stock"
+                  action="erp_res_currency_view_action"
+                  sequence="61"
+        />
+
+        <menuitem id="menu_price_list_in_config_stock"
+                  name="Price Lists"
+                  parent="menu_tax_and_currency_in_config_stock"
+                  action="price_list_view_action"
+                  sequence="62"
+        />
+
+        <menuitem id="menu_document_and_accounting_in_config_stock"
+                  name="Documents and Accounting"
+                  parent="stock.menu_stock_config_settings"
+                  sequence="51"
+        />
+
+        <menuitem id="menu_stock_document_type_in_config_stock"
+                  name="Documents Type"
+                  parent="menu_document_and_accounting_in_config_stock"
+                  action="stock_document_type_view_action"
+                  sequence="63"
+        />
+        <menuitem id="menu_stock_accounting_type_in_config_stock"
+                  name="Accounting Type"
+                  parent="menu_document_and_accounting_in_config_stock"
+                  action="stock_accounting_type_view_action"
+                  sequence="64"
+        />
+        <menuitem id="menu_stock_customs_declaration_in_config_stock"
+                  name="Customs Declarations"
+                  parent="menu_document_and_accounting_in_config_stock"
+                  action="stock_customs_declaration_view_action"
+                  sequence="65"
+        />
+    </data>
+</odoo>

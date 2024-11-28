@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_brand,access_product_brand,model_product_brand,,1,1,1,1
+access_erp_product_attribute_set,access_erp_product_attribute_set,model_erp_product_attribute_set,,1,1,1,1
+access_product_line,access_product_line,model_product_line,,1,1,1,1
+access_product_gender,access_product_gender,model_product_gender,,1,1,1,1
+access_erp_account_tax,access_erp_account_tax,model_erp_account_tax,,1,1,1,1
+access_erp_res_currency,access_erp_res_currency,model_erp_res_currency,,1,1,1,1
+access_erp_res_company,access_erp_res_company,model_erp_res_company,,1,1,1,1
+access_price_list,access_price_list,model_price_list,,1,1,1,1
+access_stock_document_type,access_stock_document_type,model_stock_document_type,,1,1,1,1
+access_stock_accounting_type,access_stock_accounting_type,model_stock_accounting_type,,1,1,1,1
+access_customs_declaration,access_customs_declaration,model_stock_customs_declaration,,1,1,1,1
+access_erp_hr_department,access_erp_hr_department,model_erp_hr_department,,1,1,1,1
+access_erp_charge,access_erp_charge,model_erp_charge,,1,1,1,1
+access_erp_barcode,access_erp_barcode,model_erp_barcode,,1,1,1,1
+access_erp_barcode_line,access_erp_barcode_line,model_erp_barcode_line,,1,1,1,1
+access_erp_brand_segment,access_erp_brand_segment,model_erp_brand_segment,,1,1,1,1

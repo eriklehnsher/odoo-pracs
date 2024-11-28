@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="tracking_stock_quant_package" model="ir.sequence">
+            <field name="name">Tracking Stock Quant Package</field>
+            <field name="code">tracking.stock.quant.package</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

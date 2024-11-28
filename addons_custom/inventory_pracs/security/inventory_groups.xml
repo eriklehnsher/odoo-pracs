@@ -1,0 +1,20 @@
+<odoo>
+    <data noupdate="1">
+        <record id="inventory_adjustment_category" model="ir.module.category">
+            <field name="name">Inventory Adjustment</field>
+            <field name="description">Inventory Adjustment</field>
+            <field name="sequence">1</field>
+        </record>
+
+        <record id="group_inventory_adjustment_staff" model="res.groups">
+            <field name="name">Inventory Adjustment Staff</field>
+            <field name="category_id" ref="inventory_adjustment_category"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="group_inventory_adjustment_manager" model="res.groups">
+            <field name="name">Inventory Adjustment Manager</field>
+            <field name="category_id" ref="inventory_adjustment_category"/>
+        </record>
+    </data>
+</odoo>

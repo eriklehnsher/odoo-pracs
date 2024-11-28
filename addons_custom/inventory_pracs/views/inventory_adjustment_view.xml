@@ -6,24 +6,44 @@
             <field name="arch" type="xml">
               <form string="Inventory Adjustment">
                   <header>
-                    <button name="action_start" string="Yêu cầu phê duyệt " type="object" class="oe_highlight"/>
-                    <button name="action_validate" string="phê duyệt" type="object" class="oe_highlight"/>
-                    <button name="action_cancel" string="Từ chối phê duyệt" type="object" class="btn-secondary"/>
-                    <field name="state" widget="statusbar" statusbar_visible="pending, approved, rejected"/>
+                    <button
+                            name="action_request_approve"
+                            string="Yêu cầu phê duyệt "
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state not in ['draft', 'rejected']"
+                    />
+                    <button
+                            name="action_approve"
+                            string="phê duyệt"
+                            type="object"
+                            class="oe_highlight"
+                            invisible="state != 'pending'"
+                            groups="inventory_pracs.group_inventory_adjustment_manager"
+                    />
+                    <button
+                            name="action_reject"
+                            string="Hủy"
+                            type="object"
+                            class="btn-secondary"
+                            invisible="state != 'pending'"
+                            groups="inventory_pracs.group_inventory_adjustment_manager"
+                    />
+                    <field name="state" widget="statusbar" statusbar_visible="draft, pending, approved, rejected"/>
                   </header>
                 <sheet>
                   <group>
                       <group>
-                        <field name="name"/>
-                        <field name="inventory_adjustment_code"/>
-                        <field name="state_date"/>
-                        <field name="end_date"/>
+                        <field name="name" readonly="state in ['approved','pending']" />
+                        <field name="inventory_adjustment_code" readonly="state in ['approved','pending']" />
+                        <field name="state_date"  readonly="state in ['approved','pending']" />
+                        <field name="end_date" readonly="state in ['approved','pending']" />
                       </group>
 
                       <group>
-                        <field name="warehouse_id" required="1"/>
-                        <field name="company_id" required="1"/>
-                        <field name="stock_take_manager" required="1"/>
+                        <field name="warehouse_id" required="1" readonly="state in ['approved','pending']" />
+                        <field name="company_id" required="1" readonly="state in ['approved','pending']" />
+                        <field name="stock_take_manager" required="1" readonly="state in ['approved','pending']" />
                       </group>
                   </group>
                 </sheet>
