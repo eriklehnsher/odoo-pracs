@@ -13,6 +13,7 @@
         'views/stock_picking_view.xml',
         'views/stock_move_location_pick_view.xml',
         'views/stock_quant_package_pick_view.xml',
+        'views/stock_picking_confirm_view.xml',
     ],
     'assets': {
         'web.assets_backend': [

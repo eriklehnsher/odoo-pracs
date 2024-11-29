@@ -41,7 +41,15 @@ class ProductTemplate(models.Model):
     def action_init_product_product(self, default_code, barcode_id):
         erp_barcode = self.env['erp.barcode'].search([('erp_barcode_id', '=', int(barcode_id))])
         product_template = self.env['product.template'].search([('default_code', '=', default_code)])
+        attribute_barcode_id = self.env['product.attribute'].search([('name', '=', 'Barcode')])
+        attribute_value_barcode_id = self.env['product.attribute.value'].search([('name', '=', erp_barcode.erp_barcode_value)])
         attr_val = []
+        attr_val.append(
+            (0, 0, {
+                'attribute_id': attribute_barcode_id.id,
+                'value_ids': [(4, attribute_value_barcode_id.id)],
+            })
+        )
         attribute_value_ids = []
         for item in erp_barcode.barcode_line_ids:
             if item.product_attribute_id and item.product_attribute_value_id and item.product_attribute_value_id.name != 'NA':

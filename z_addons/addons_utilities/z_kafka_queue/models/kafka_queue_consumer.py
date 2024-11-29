@@ -239,7 +239,7 @@ class KafkaQueue(models.Model):
                 'enable.auto.commit': False,
             }
             consumer = Consumer(consumer_conf)
-            consumer.assign([TopicPartition('wms.to.erp.transfer.response', 0, 1)])
+            consumer.assign([TopicPartition('erp.to.wms.poimportgood.request', 0, 1)])
             while True:
                 message = consumer.poll(timeout=5)
                 if message is None:

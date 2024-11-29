@@ -89,7 +89,7 @@ class StockPicking(models.Model):
         self.ensure_one()
         list_msg = []
         sql = """
-            SELECT create_date FROM stock_picking WHERE id = %s;
+            SELECT create_date FROM stock_picking WHERE id = %s;  
         """ % self.id
         self._cr.execute(sql)
         res = self._cr.dictfetchall()
@@ -167,7 +167,7 @@ class StockPicking(models.Model):
                 "objData": {
                     "metaData": {
                         "sequenceId": 1,
-                        "totalLines": len(self.move_line_ids),
+                        "totalLines": len(self.move_ids_without_package),
                     },
                     "requestId": self.name,
                     "fromSource": {
@@ -222,7 +222,7 @@ class StockPicking(models.Model):
                 "objData": {
                     "metaData": {
                         "sequenceId": 1,
-                        "totalLines": len(self.move_line_ids),
+                        "totalLines": len(self.move_ids_without_package),
                     },
                     "requestId": self.name,
                     "fromSource": {
@@ -420,7 +420,7 @@ class StockPicking(models.Model):
         sml_pick = self.env['stock.move.location.pick']
         sml_pick_line = self.env['stock.move.location.pick.line']
         move_location_pick = sml_pick.search([('picking_id', '=', self.id), ('type', '=', 'pick_in')])
-        if self.state == 'draft':
+        if self.state in ('draft', 'confirmed'):
             if not move_location_pick:
                 move_location_pick = sml_pick.create(
                     {
@@ -462,6 +462,8 @@ class StockPicking(models.Model):
         }
 
     def action_confirm(self):
+        pick_out = self.env['stock.move.location.pick'].search(
+            [('picking_id', '=', self.id), ('type', '=', 'pick_out')])
         if not self.erp_created_at:
             if self.state == 'draft' and self.picking_type_code in ('outgoing', 'internal'):
                 pick_out = self.env['stock.move.location.pick'].search(
@@ -469,11 +471,35 @@ class StockPicking(models.Model):
                 if not pick_out or not pick_out.move_location_pick_ids:
                     raise UserError(_('Not enough locations have been declared for the product.\n'
                                       'Please declare enough import/export warehouse locations for the product!'))
-                for item in self.env['stock.move.location.pick'].search(
-                        [('picking_id', '=', self.id), ('type', '=', 'pick_out')]).move_location_pick_ids:
+                for item in pick_out.move_location_pick_ids:
                     if not item.location_id:
                         raise UserError(_('Not enough locations have been declared for the product.\n'
                                           'Please declare enough import/export warehouse locations for the product!'))
+        sum1 = 0
+        for item in self.move_ids_without_package:
+            sum1 += item.product_uom_qty
+        sum2 = 0
+        for item in pick_out.move_location_pick_ids:
+            sum2 += item.quantity
+        if sum2 > sum1:
+            picking_confirm = self.env['stock.picking.confirm'].create({
+                'picking_id': self.id,
+            })
+
+            return {
+                'type': 'ir.actions.act_window',
+                'res_model': 'stock.picking.confirm',
+                'res_id': picking_confirm.id,
+                'view_mode': 'form',
+                'view_id': self.env.ref('z_stock_picking.stock_picking_confirm').id,
+                'target': 'new',
+            }
+        else:
+            self.action_confirm_popup()
+
+
+
+    def action_confirm_popup(self):
         res = super(StockPicking, self).action_confirm()
         if self.z_transfer_type == 'wms_ho_to_ho':
             self.action_confirm_internal_export()
@@ -495,7 +521,12 @@ class StockPicking(models.Model):
                     'message_send': item,
                     'obj_name': 'wmsToErpTransferRequest',
                 })
+        pick_out = self.env['stock.move.location.pick'].search(
+            [('picking_id', '=', self.id), ('type', '=', 'pick_out')])
+        if pick_out:
+            pick_out.can_edit = False
         return res
+
 
     def push_action(self):
 
@@ -555,6 +586,7 @@ class StockPicking(models.Model):
 
     def button_validate(self):
         res = super(StockPicking, self).button_validate()
+        return res
         # Nếu tích xuất cả thùng trên dòng pick location, khi xác nhận phiếu kho => chuyển trạng thái thùng sang done
         for move in self.move_line_ids_without_package:
             if move.package_id:

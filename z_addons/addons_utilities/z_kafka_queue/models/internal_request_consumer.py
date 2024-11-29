@@ -46,7 +46,8 @@ class InternalRequestConsumer(models.Model):
                 'enable.auto.commit': True,
             }
             consumer = Consumer(consumer_conf)
-            consumer.subscribe(topic)
+            # consumer.subscribe(topic)
+            consumer.assign([TopicPartition('erp.to.wms.internal.response', 0, 1)])
             while True:
                 message = consumer.poll(timeout=5)
                 if message is None:
@@ -67,9 +68,10 @@ class InternalRequestConsumer(models.Model):
                         _logger.warning('Message received: %s \n Offset: %s \n Partition: %s' % (
                             json.loads(message.value()), message.offset(), message.partition()))
                         # Đẩy dữ liệu tới kafka khi nhận yêu cầu
-                        received_obj_name, topic_send = irc_env.get_response_queue_data_by_obj_name(data['objName'])
-                        msg_receive = irc_env.get_receive_msg_response(data, received_obj_name)
-                        irc_env.action_producer_to_kafka(host, topic_send, msg_receive)
+                        if 'response' not in data['objName'].lower():
+                            received_obj_name, topic_send = irc_env.get_response_queue_data_by_obj_name(data['objName'])
+                            msg_receive = irc_env.get_receive_msg_response(data, received_obj_name)
+                            irc_env.action_producer_to_kafka(host, topic_send, msg_receive)
                         
                         data_created = False
                         picking_name = ''
@@ -147,7 +149,7 @@ class InternalRequestConsumer(models.Model):
         receive_obj_data = obj_data
         receive_obj_data['status'] = 'success'
         receive_obj_data['message'] = 'receive successfully'
-        receive_obj_data['messageReceiveId'] = data['messageId']
+        receive_obj_data['messageReceiveId'] = data.get('messageId', '')
         receive_obj_data['requestId'] = ''
         receive_obj_data['errorDetails'] = None
         receive_obj_data['fromSource'] = {
@@ -358,7 +360,7 @@ class InternalRequestConsumer(models.Model):
         fromSource = data['objData']['fromSource']
         sourceWarehouse = data['objData']['sourceWarehouse']
         requestedBy = data['objData']['requestedBy']
-        items = POImportGoodInfo['items']
+        items = data['objData']['items']
         vendorInfo = POImportGoodInfo['vendorInfo']
         erp_partner_id = vendorInfo['bpartnerId']
         with registry_get(self.env.cr.dbname).cursor() as cr:
@@ -377,9 +379,9 @@ class InternalRequestConsumer(models.Model):
                 'erp_client_id': fromSource['clientId'],
                 'picking_type_id': source_warehouse.in_type_id.id,
                 'warehouse_dest_id': source_warehouse.id,
-                'schedule_date': datetime.fromtimestamp(data['objData']['requestDate'] / 1000),
+                'scheduled_date': datetime.fromtimestamp(data['objData']['requestDate'] / 1000),
                 'erp_user_id': requestedBy['userId'],
-                'erp_state_document': POImportGoodInfo['documentStatus'],
+                # 'erp_state_document': POImportGoodInfo['documentStatus'],
                 'erp_created_at': datetime.fromtimestamp(POImportGoodInfo['createdAt'] / 1000),
                 'erp_updated_at': datetime.fromtimestamp(POImportGoodInfo['updatedAt'] / 1000),
                 'note': data['objData']['remarks'],
@@ -394,12 +396,15 @@ class InternalRequestConsumer(models.Model):
             product = env['product.product'].search([('barcode', '=', items['barcodeValue'])], limit=1)
             uom = env['uom.uom'].search([('erp_uom_id', '=', items['uomId'])], limit=1)
             val_stock_move = {
+                'name': stock_picking.name,
                 'erp_line_id': items['lineId'],
                 'erp_barcode_id': items['barcodeId'],
                 'picking_id': stock_picking.id,
                 'product_id': product.id,
                 'product_uom_qty': items['quantity'],
                 'product_uom': uom.id,
+                'location_id': env.ref('stock.stock_location_suppliers').id,
+                'location_dest_id': source_warehouse.lot_stock_id.id,
             }
             stock_move = env['stock.move'].search([('erp_line_id', '=', items['lineId']), ('picking_id', '=', stock_picking.id)], limit=1)
             if stock_move:
@@ -413,7 +418,7 @@ class InternalRequestConsumer(models.Model):
                     "number_declaration": customsDeclarationInfo['declarationNo'],
                     "name": customsDeclarationInfo['declarationName'],
                     "description": customsDeclarationInfo['declarationDescription'],
-                    "date": datetime.fromtimestamp(customsDeclarationInfo['declarationDate']) if customsDeclarationInfo['declarationDate'] else False,
+                    "date": datetime.fromtimestamp(customsDeclarationInfo['declarationDate'] / 1000) if customsDeclarationInfo['declarationDate'] else False,
                 }
                 customs_declaration_record = env['stock.customs.declaration'].search([('erp_id', '=', customsDeclarationInfo['declarationId'])], limit=1)
                 if customs_declaration_record:

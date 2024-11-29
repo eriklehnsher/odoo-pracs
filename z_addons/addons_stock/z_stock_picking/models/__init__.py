@@ -7,3 +7,4 @@ from . import stock_move_location_pick
 from . import stock_move_location_pick_line
 from . import stock_quant_package_pick
 from . import stock_quant
+from . import stock_picking_confirm

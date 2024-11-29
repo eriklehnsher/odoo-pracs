@@ -26,14 +26,11 @@
 
                 <xpath expr="//button[@name='action_confirm']" position="after">
                     <field name="is_confirm_internal_export" invisible="1"/>
-                    <button name="push_action" string="Push" type="object"
-                            groups="base.group_no_one"
-                            class="btn btn-secondary"/>
                 </xpath>
 
-<!--                <xpath expr="//button[@name='229']" position="replace">-->
-<!--                    <button name="229" string="Return" invisible="True" type="action" groups="base.group_user" data-hotkey="k"/>-->
-<!--                </xpath>-->
+                <xpath expr="//button[@name='229']" position="replace">
+                    <button name="229" string="Return" invisible="True" type="action" groups="base.group_user" data-hotkey="k"/>
+                </xpath>
 
                 <xpath expr="//field[@name='picking_type_id']" position="attributes">
                     <attribute name="invisible">True</attribute>

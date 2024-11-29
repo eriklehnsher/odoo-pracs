@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="stock_picking_confirm" model="ir.ui.view">
+            <field name="name">stock.picking.confirm</field>
+            <field name="model">stock.picking.confirm</field>
+            <field name="arch" type="xml">
+                <form>
+                    <h1>
+                        <field name="text" nolabel="True" readonly="True"/>
+                    </h1>
+                    <footer>
+                        <button name="action_save" type="object" string="Save" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="x"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

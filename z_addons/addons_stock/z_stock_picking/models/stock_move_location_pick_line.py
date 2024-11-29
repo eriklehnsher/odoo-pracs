@@ -51,6 +51,7 @@ class StockMoveLocationPickLine(models.Model):
     def _compute_locations(self):
         for item in self:
             item.location_out_ids = None
+            item.location_in_ids = None
             product_id = item.product_id.id
             warehouse_id = item.move_location_pick_id.picking_id.warehouse_id
             warehouse_dest_id = item.move_location_pick_id.picking_id.warehouse_dest_id
